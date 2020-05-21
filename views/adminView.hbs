@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="/admin">
+		<h5>Insert New Details</h5>
+		<input type="text" id="flightId" name="flightId" placeholder="Flight ID">
+		<input type="text" id="flightName" name="flightName" placeholder="Flight Name">
+		<br>
+		<input type="text" id="source" name="source" placeholder="Source">
+		<input type="text" id="destination" name="destination" placeholder="Destination">
+		<br>
+		<input type="text" id="price" name="price" placeholder="Price">
+		<input type="text" id="seats" name="seats" placeholder="Capacity">
+		<br>
+		<label for="startDate">Start Date:</label>
+		<input type="date" id="startDate" name="startDate" placeholder="Start Date">
+		<label for="startTime">Start Time:</label>
+		<input type="time" id="startTime" name="startTime" placeholder="Start Time">
+		<br>
+		<label for="endDate">End Date:</label>
+		<input type="date" id="endDate" name="endDate" placeholder="End Date">
+		<label for="endTime">End Time:</label>
+		<input type="time" id="endTime" name="endTime" placeholder="Ending Time">
+		<br>
+		<input type="submit" id="submit" name="submit">
+		<br><br><br>
+    </form>
+
+    <a href="/admin/search">Search Flights</a>
+    <a href="/admin/delete">Delete Flights</a>
+
+    <br><br><br>
+    <table id="details" cellspacing="10" border="1" cellpadding="10">
+        {{#if flights}}
+			<tr>
+				<th>FId</th>
+				<th>Name </th>
+				<th>Source</th>
+				<th>Destination</th>
+				<th>Price</th>
+				<th>Seats</th>
+				<th>Start Date</th>
+				<th>Start Time</th>
+				<th>End Date</th>
+				<th>End Time</th>
+			</tr>
+		{{/if}}
+		{{#each flights as |item|}}
+			<tr>
+				<td>{{item.flightId}}</td>
+				<td>{{item.flightName}}</td>
+				<td>{{item.source}}</td>
+				<td>{{item.destination}}</td>
+				<td>{{item.price}}</td>
+				<td>{{item.seats}}</td>
+				<td>{{item.startDate}}</td>
+				<td>{{item.startTime}}</td>
+				<td>{{item.endDate}}</td>
+				<td>{{item.endTime}}</td>
+			</tr>
+		{{/each}}
+
+    </table>
+  
+</body>
+</html>

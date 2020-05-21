@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Search Page</title>
+</head>
+<body>
+    <h4>Search Details</h4>
+    <form method="POST" action="/admin/search">
+        <input type="text" name="source" placeholder="Source">
+        <input type="text" name="destination"  placeholder="Destination">
+        <input type="date" name="startDate" placeholder="Start Date">
+        <input type="submit" name="submit">
+    </form>
+
+    <table id="table" cellspacing="10" border="1" cellpadding="10">
+        {{#if flights}}
+        <tr>
+            <th>FId</th>
+            <th>Name </th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Price</th>
+            <th>Seats</th>
+            <th>Start Date</th>
+            <th>Start Time</th>
+            <th>End Date</th>
+            <th>End Time</th>
+        </tr>
+        {{/if}}
+		{{#each flights as |item|}}
+			<tr>
+				<td>{{item.flightId}}</td>
+				<td>{{item.flightName}}</td>
+				<td>{{item.source}}</td>
+				<td>{{item.destination}}</td>
+				<td>{{item.price}}</td>
+				<td>{{item.seats}}</td>
+				<td>{{item.startDate}}</td>
+				<td>{{item.startTime}}</td>
+				<td>{{item.endDate}}</td>
+				<td>{{item.endTime}}</td>
+			</tr>
+		{{/each}}
+    </table>
+
+
+</body>
+</html>
