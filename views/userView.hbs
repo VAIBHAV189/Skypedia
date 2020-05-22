@@ -46,15 +46,52 @@
 				<td>{{item.flightName}}</td>
 				<td>{{item.source}}</td>
 				<td>{{item.destination}}</td>
-				<td>{{item.price}}</td>
 				<td>{{item.startDate}}</td>
 				<td>{{item.startTime}}</td>
 				<td>{{item.endDate}}</td>
 				<td>{{item.endTime}}</td>
+				<td>{{item.price}}</td>
 			</tr>
 		{{/each}}
     </table>
     
+      <form action="/user/history" METHOD = "POST">
+        <input type="text" value={{user}} name = "user">
+         Click here to watch history:
+         <input type="submit" name="submit">
+      </form>
      <h2>History</h2>
+     {{!-- <button id="history">History</button> --}}
+     <table id="table" cellspacing="10" border="1" cellpadding="10">
+        {{#if history}}
+        <tr>
+            <th>Ticket_id</th>
+            <th>Flight name</th>
+            <th>Username</th>
+            <th>startDate</th>
+            <th>Passenger Name</th>
+            <th>Age</th>
+            <th>Seat Number</th>
+            <th>Gender</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Price</th>
+        </tr>
+        {{/if}}
+		{{#each history as |item|}}
+			<tr>
+				<td>{{item.T_id}}</td>
+				<td>{{item.flight_name}}</td>
+				<td>{{item.username}}</td>
+				<td>{{item.startDate}}</td>
+				<td>{{item.pass_name}}</td>
+				<td>{{item.pass_age}}</td>
+				<td>{{item.pass_seat_num}}</td>
+				<td>{{item.source}}</td>
+				<td>{{item.destination}}</td>
+				<td>{{item.price}}</td>
+			</tr>
+		{{/each}}
+    </table>
 </body>
 </html>

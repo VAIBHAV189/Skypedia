@@ -1,29 +1,78 @@
 const mysql=require('mysql2')
 const connection=mysql.createConnection({
     host: 'localhost',
-    user: 'vagish',
-    password: 'password',
-    database:'check1_db' 
+    user: 'myuser',
+    password: 'mypaaas',
+    database:'airline_manager' 
 })
-
+//correct
 function createTable()
 {
     return new Promise((resolve,reject)=>{
         connection.query(
-            `CREATE TABLE IF NOT EXISTS FLIGHT_MANAGEMENT(
-                flightId INTEGER PRIMARY KEY,
-                flightName VARCHAR(30) NOT NULL,
-                source VARCHAR(30) NOT NULL,
-                destination VARCHAR(30) NOT NULL,
-                price INTEGER NOT NULL,
-                seats INTEGER NOT NULL,
-                startDate VARCHAR(30) NOT NULL,
-                startTime TIME NOT NULL,
-                endDate VARCHAR(30) NOT NULL,
-                endTime TIME NOT NULL
-            )`,
+            `CREATE TABLE IF NOT EXISTS schedule (
+                flightId int, 
+                flightName varchar(30), 
+                source varchar(30), 
+                destination varchar(30), 
+                price integer, 
+                startDate varchar(30), 
+                startTime time, 
+                endDate varchar(30), 
+                endTime time,
+                seats_left integer,
+                primary key(flightId , startTime)
+            );`,
             function(err,result){
-                console.log("Table Created")
+                console.log("Table1 Created")
+                if(err)
+                    reject(err)
+                else
+                    resolve(result)
+            }
+        )
+        connection.query(
+            ` CREATE TABLE IF NOT EXISTS flight_details (
+                flight_id INTEGER PRIMARY KEY,
+                flight_name varchar(30) NOT NULL,
+                capacity INTEGER NOT NULL
+            );`,
+            function(err,result){
+                console.log("Table2 Created")
+                if(err)
+                    reject(err)
+                else
+                    resolve(result)
+            }
+        )
+        connection.query(
+            `CREATE TABLE IF NOT EXISTS transaction_info (
+                payment_id varchar(30) PRIMARY KEY,
+                user_id varchar(30) NOT NULL,
+                amount INTEGER NOT NULL
+            );`,
+            function(err,result){
+                console.log("Table3 Created")
+                if(err)
+                    reject(err)
+                else
+                    resolve(result)
+            }
+        )
+        connection.query(
+            `CREATE TABLE IF NOT EXISTS bookings (
+                T_id integer PRIMARY KEY auto_increment,
+                username varchar(30),
+                flight_id integer, 
+                startDate varchar(30),
+                pass_name varchar(50),
+                pass_age integer,
+                pass_gender varchar(1),
+                pass_seat_num integer,
+                payment_id varchar(30)
+            );`,
+            function(err,result){
+                console.log("Table4 Created")
                 if(err)
                     reject(err)
                 else
@@ -32,15 +81,14 @@ function createTable()
         )
     })
 }
-
-function getAllDetails()
+//correct
+function getAllSchedules()
 {
     return new Promise((resolve,reject)=>{
         connection.query(
-            'SELECT *FROM FLIGHT_MANAGEMENT',
+            `SELECT * FROM schedule`,
             function(err,rows,col)
             {
-                // console.log(rows)
                 if(err)
                     reject(err)
                 else 
@@ -49,18 +97,51 @@ function getAllDetails()
         )
     })
 }
-
-function insertDetails(obj)
+//correct
+function getAllflightDetails()
+{
+    return new Promise((resolve,reject)=>{
+        connection.query(
+            `SELECT * FROM flight_details`,
+            function(err,rows,col)
+            {
+                if(err)
+                    reject(err)
+                else 
+                    resolve(rows)
+            }
+        )
+    })
+}
+//correct
+function insertDetailsadmin(obj)
 {
     console.log(obj)
     return new Promise((resolve,reject)=>{
         connection.query(
-            `INSERT INTO FLIGHT_MANAGEMENT VALUES(?,?,?,?,?,?,?,?,?,?)`,
-            [obj.flightId,obj.flightName,obj.source,obj.destination,obj.price,obj.seats,
-                    obj.startDate,obj.startTime,obj.endDate,obj.endTime],
+            `INSERT INTO schedule(flightId, flightName, source, destination, price, startDate, startTime, endDate, endTime) 
+            VALUES(?,?,?,?,?,?,?,?,?)`,
+            [obj.flightId,obj.flightName,obj.source,obj.destination,obj.price,obj.startDate,obj.startTime,obj.endDate,obj.endTime],
             function(err,result)
             {
-                // console.log(result)
+                if(err)
+                    reject(err)
+                else 
+                    resolve(result)
+            }
+        )
+        connection.query(
+           `UPDATE schedule 
+            SET seats_left = (
+               SELECT capacity
+               FROM flight_details
+               WHERE flight_id = ?
+            )
+            WHERE flightId = ? AND startDate = ?;
+            `,
+            [obj.flightId , obj.flightId,obj.startDate],
+            function(err,result) {
+                console.log(err);
                 if(err)
                     reject(err)
                 else 
@@ -88,48 +169,69 @@ function searchDetails(obj)
         )
     })
 }
-
+//correct
 function searchDetailsUser(obj)
 {
     console.log('db.js me')
     console.log(obj)
     return new Promise((resolve,reject)=>{
         connection.query(
-            `SELECT flightName, source, destination, price, startDate, startTime, endDate, endTime  
-            FROM FLIGHT_MANAGEMENT
+            `SELECT flightName, source, destination, startDate, startTime, endDate, endTime, price  
+            FROM schedule
             WHERE source=? AND destination=? AND startDate=?
             ORDER BY PRICE ASC`,
-            [obj.source,obj.destination,obj.startDate],          //ORDER BY PRICE ASC ME PANGE AA RAHE HAIN ye theek kar
-            function(err,result)
-            {
+            [obj.source,obj.destination,obj.startDate],          
+            function(err,result) {
                 if(err) {
                     reject(err)
                 }
                 else {
-                    // console.log(result)
                     resolve(result)
                 }
             }
         )
     })
 }
-
-function deleteDetails(obj)
+function searchUserHistory(obj)
+{
+    // console.log('db.js me')
+    console.log(obj)
+    return new Promise((resolve,reject)=>{
+        connection.query(
+            `SELECT bookings.T_id, bookings.username, bookings.startDate, bookings.pass_name, bookings.pass_age, bookings.pass_gender, bookings.pass_seat_num, flight_details.flight_name, schedule.source, schedule.destination, schedule.price
+            FROM bookings 
+            JOIN flight_details ON bookings.flight_id = flight_details.flight_id
+            JOIN schedule ON bookings.flight_id = schedule.flightId AND bookings.startDate = schedule.startDate
+            WHERE bookings.username = ?
+            ORDER BY bookings.startDate DESC;
+            `,
+            [obj.user],          
+            function(err,result) {
+                if(err) {
+                    reject(err)
+                }
+                else {
+                    resolve(result)
+                }
+            }
+        )
+    })
+}
+//correct
+function deleteflightDetails(obj)
 {
     return new Promise((resolve,reject)=>{
         connection.query(
-            `DELETE FROM FLIGHT_MANAGEMENT
-            WHERE flightId=?`,
+            `DELETE FROM flight_details
+            WHERE flight_id=?`,
             [obj.flightId],
             function(err,result) {
                 // console.log(result)
                 if(err) reject(err)
                 else {
                     connection.query(
-                        `SELECT * FROM FLIGHT_MANAGEMENT`,
-                        function(err,result)
-                        {
-                            // console.log(result)
+                        `SELECT * FROM flight_details`,
+                        function(err,result) {
                             if(err)
                                 reject(err)
                             else
@@ -144,9 +246,11 @@ function deleteDetails(obj)
 
 module.exports={
     createTable,
-    getAllDetails,
-    insertDetails,
+    getAllSchedules,
+    getAllflightDetails,
+    insertDetailsadmin,
     searchDetails,
-    deleteDetails,
-    searchDetailsUser
+    deleteflightDetails,
+    searchDetailsUser,
+    searchUserHistory
 }

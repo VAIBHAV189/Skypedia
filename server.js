@@ -15,13 +15,13 @@ server.use(session({
     resave:false,
     saveUninitialized:true
 }))
+
 server.use(passport.initialize())
 server.use(passport.session())
 
 server.set("view engine","hbs")
 
 server.use('/',express.static(path.join(__dirname,'./public')));
-// server.use('/admin',express.static(path.join(__dirname,'public/admin')))
 server.use('/user',express.static(path.join(__dirname,'public/user')))
 server.use('/search',express.static(path.join(__dirname,'public/admin/Search')))
 server.use('/delete',express.static(path.join(__dirname,'public/admin/Delete')))
@@ -29,6 +29,7 @@ server.use('/delete',express.static(path.join(__dirname,'public/admin/Delete')))
 server.use('/root',root)
 server.use('/admin',admin)
 server.use('/user',user)
-server.listen(6979,()=>{
-    console.log("Server started successfully at localhost:6979")
+
+server.listen(6969,()=>{
+    console.log("Server started successfully at localhost:6969")
 })

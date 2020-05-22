@@ -7,13 +7,23 @@ db.createTable()
     .catch((err)=>{console.log(err)})
 
 route.get('/',(req,res)=>{
-    if(req.user&&req.user.username==='admin')
-    // if(req.user)
-    {
-        console.log(req.user)
-        db.getAllDetails()
+    if(req.user&&req.user.username==='admin') {
+        db.getAllSchedules()
         .then((flights)=>{
-            return res.render('adminView',{flights})
+            let ans = {}
+            db.getAllflightDetails()
+                .then((details)=>{
+                    ans = {
+                        flights,
+                        details,
+                    }
+                    console.log('ans') 
+                    return res.render('adminView',ans)
+                })
+                .catch((err)=>{ 
+                    return res.send(err)
+                })
+            console.log(ans)
         })
         .catch((err)=>{ 
             return res.send(err)
@@ -26,9 +36,7 @@ route.get('/',(req,res)=>{
 
 
 route.get('/search',(req,res)=>{
-    if(req.user&&req.user.username==='admin')
-    // if(req.user)
-    {
+    if(req.user&&req.user.username==='admin') {
         let obj=[]
         return res.render('searchAdmin',{obj})
     }
@@ -37,10 +45,8 @@ route.get('/search',(req,res)=>{
 })
 
 route.get('/delete',(req,res)=>{
-    if(req.user&&req.user.username==='admin')
-    // if(req.user)
-    {
-        return res.render('deleteAdmin') 
+    if(req.user && req.user.username === 'admin') {
+        return res.render('deleteAdmin',) 
     }
     else
         return res.redirect('/root/login')
@@ -48,9 +54,8 @@ route.get('/delete',(req,res)=>{
 
 route.post('/',(req,res)=>{
     if(req.user&&req.user.username==='admin')
-    // if(req.user)
     {
-        db.insertDetails(req.body)
+        db.insertDetailsadmin(req.body)
         .then(()=>{
             return res.redirect('/admin')
         }) 
@@ -63,11 +68,8 @@ route.post('/',(req,res)=>{
     
 })
 
-route.post('/search',(req,res)=>
-{
-    if(req.user&&req.user.username==='admin')
-    // if(req.user)
-    {
+route.post('/search',(req,res)=> {
+    if(req.user && req.user.username === 'admin') {
         db.searchDetails(req.body)
         .then((flights)=>{
             console.log(flights)
@@ -85,10 +87,10 @@ route.post('/search',(req,res)=>
 
 
 route.post('/delete',(req,res)=>{
-    if(req.user&&req.user.username==='admin')
+    if(req.user && req.user.username === 'admin')
     // if(req.user)
     {
-        db.deleteDetails(req.body)
+        db.deleteflightDetails(req.body)
             .then((data)=>{
                 console.log("Successful delete")
                 return res.redirect('/admin')

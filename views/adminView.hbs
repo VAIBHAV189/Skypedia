@@ -35,6 +35,7 @@
     <a href="/admin/delete">Delete Flights</a>
 
     <br><br><br>
+
     <table id="details" cellspacing="10" border="1" cellpadding="10">
         {{#if flights}}
 			<tr>
@@ -43,11 +44,11 @@
 				<th>Source</th>
 				<th>Destination</th>
 				<th>Price</th>
-				<th>Seats</th>
 				<th>Start Date</th>
 				<th>Start Time</th>
 				<th>End Date</th>
 				<th>End Time</th>
+				<th>Seats_Left</th>
 			</tr>
 		{{/if}}
 		{{#each flights as |item|}}
@@ -57,15 +58,32 @@
 				<td>{{item.source}}</td>
 				<td>{{item.destination}}</td>
 				<td>{{item.price}}</td>
-				<td>{{item.seats}}</td>
 				<td>{{item.startDate}}</td>
 				<td>{{item.startTime}}</td>
 				<td>{{item.endDate}}</td>
 				<td>{{item.endTime}}</td>
+				<td>{{item.seats_left}}</td>
 			</tr>
 		{{/each}}
-
     </table>
-  
+	<br> <br> <br>
+
+    <table id="flight_info" cellspacing="10" border="1" cellpadding="10">
+        {{#if details}}
+			<tr>
+				<th>FId</th>
+				<th>Name </th>
+				<th>Capacity</th>
+			</tr>
+		{{/if}}
+		{{#each details as |item|}}
+			<tr>
+				<td>{{item.flight_id}}</td>
+				<td>{{item.flight_name}}</td>
+				<td>{{item.capacity}}</td>
+			</tr>
+		{{/each}}
+    </table>
+	
 </body>
 </html>
