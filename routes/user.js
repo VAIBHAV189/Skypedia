@@ -1,18 +1,21 @@
-const route= require('express').Router()
-const db=require('../db')
+const route = require('express').Router()
+const db = require('../db')
 
 route.get('/',(req,res)=>{
     if(req.user) {
         let user = req.user.username;
-        // console.log(user)
         return res.render('userView',{user})
     }
     else 
         return res.redirect('/root/login')
 })
+
+
+
 route.post('/search',(req,res)=>{
     if(req.user)
-    {
+    {   
+        // console.log(req.body)
         db.searchDetailsUser(req.body)
             .then((flights)=>{
                 return res.render('userView',{flights})
@@ -24,6 +27,7 @@ route.post('/search',(req,res)=>{
     else 
         return res.redirect('/root/login')
 })
+
 route.post('/history',(req,res)=>{
     if(req.user)
     {
@@ -39,6 +43,6 @@ route.post('/history',(req,res)=>{
         return res.redirect('/root/login')
 })
 
-module.exports={
+module.exports = {
     route
 }

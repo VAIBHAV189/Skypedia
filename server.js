@@ -6,7 +6,8 @@ const root=require('./routes/root').route
 const user=require('./routes/user').route
 const session=require('express-session')
 const passport=require('./passport.js')
-const {db}=require('./passportDb')
+// const {db}=require('./passportDb')
+// const { nextTick } = require('process')
 server.use(express.json())
 server.use(express.urlencoded({extended:true}))
 
@@ -21,15 +22,12 @@ server.use(passport.session())
 
 server.set("view engine","hbs")
 
-server.use('/',express.static(path.join(__dirname,'./public')));
-server.use('/user',express.static(path.join(__dirname,'public/user')))
-server.use('/search',express.static(path.join(__dirname,'public/admin/Search')))
-server.use('/delete',express.static(path.join(__dirname,'public/admin/Delete')))
+server.use(express.static('public')); 
 
+server.use('/user',user)
 server.use('/root',root)
 server.use('/admin',admin)
-server.use('/user',user)
 
-server.listen(6969,()=>{
-    console.log("Server started successfully at localhost:6969")
+server.listen(6979,()=>{
+    console.log("Server started successfully at localhost:6979")
 })

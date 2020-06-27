@@ -22,7 +22,7 @@ const Users=db.define('user',{
     }
 })
 db.sync().then(()=>{
-    console.log("Data Base is ready")
+    // console.log("Data Base is ready")
 })
 module.exports={
     db,Users

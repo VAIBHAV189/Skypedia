@@ -36,8 +36,8 @@ route.get('/',(req,res)=>{
 
 
 route.get('/search',(req,res)=>{
-    if(req.user&&req.user.username==='admin') {
-        let obj=[]
+    if(req.user && req.user.username === 'admin') {
+        let obj = []
         return res.render('searchAdmin',{obj})
     }
     else

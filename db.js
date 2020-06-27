@@ -1,5 +1,5 @@
-const mysql=require('mysql2')
-const connection=mysql.createConnection({
+const mysql = require('mysql2')
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'myuser',
     password: 'mypaaas',
@@ -116,7 +116,7 @@ function getAllflightDetails()
 //correct
 function insertDetailsadmin(obj)
 {
-    console.log(obj)
+    // console.log(obj)
     return new Promise((resolve,reject)=>{
         connection.query(
             `INSERT INTO schedule(flightId, flightName, source, destination, price, startDate, startTime, endDate, endTime) 
@@ -137,9 +137,9 @@ function insertDetailsadmin(obj)
                FROM flight_details
                WHERE flight_id = ?
             )
-            WHERE flightId = ? AND startDate = ?;
+            WHERE flightId = ?;
             `,
-            [obj.flightId , obj.flightId,obj.startDate],
+            [obj.flightId , obj.flightId],
             function(err,result) {
                 console.log(err);
                 if(err)
@@ -149,6 +149,10 @@ function insertDetailsadmin(obj)
             }
         )
     })
+}
+
+function insertinschedule(obj) {
+    
 }
 
 function searchDetails(obj)
@@ -172,11 +176,9 @@ function searchDetails(obj)
 //correct
 function searchDetailsUser(obj)
 {
-    console.log('db.js me')
-    console.log(obj)
     return new Promise((resolve,reject)=>{
         connection.query(
-            `SELECT flightName, source, destination, startDate, startTime, endDate, endTime, price  
+            `SELECT flightName, source, destination, startDate, startTime, endDate, endTime, price, seats_left  
             FROM schedule
             WHERE source=? AND destination=? AND startDate=?
             ORDER BY PRICE ASC`,
@@ -195,7 +197,7 @@ function searchDetailsUser(obj)
 function searchUserHistory(obj)
 {
     // console.log('db.js me')
-    console.log(obj)
+    // console.log(obj)
     return new Promise((resolve,reject)=>{
         connection.query(
             `SELECT bookings.T_id, bookings.username, bookings.startDate, bookings.pass_name, bookings.pass_age, bookings.pass_gender, bookings.pass_seat_num, flight_details.flight_name, schedule.source, schedule.destination, schedule.price

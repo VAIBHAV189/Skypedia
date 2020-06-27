@@ -1,13 +1,13 @@
-const passport=require('passport')
-const localStrategy=require('passport-local').Strategy
-const Users=require('./passportDb.js').Users
+const passport = require('passport')
+const localStrategy = require('passport-local').Strategy
+const Users = require('./passportDb.js').Users
 
 // passport.serializeUser(function(user,done){
 //     done(null,user.username)
 // })
 
 passport.serializeUser(
-    function(user,done){
+    function(user,done) {
         done(null,user.id) 
     }
 )
@@ -24,11 +24,14 @@ passport.serializeUser(
 //     })
 
 // })
+
 passport.deserializeUser(
     function(userId,done){
-        Users.findByPk(userId).then((user)=>{
+        Users.findByPk(userId)
+        .then((user)=>{
             done(null,user) 
-        }).catch(done)
+        })
+        .catch(done)
     }
 )
 
@@ -53,11 +56,13 @@ passport.deserializeUser(
 //         return done(err)
 //     })
 // }))
+
 passport.use(new localStrategy(
     function(username,password,done){
         Users.findOne({
             where:{username:username} 
-        }).then((user)=>{
+        })
+        .then((user)=>{
             if(!user){
                 return done(null,false) 
             }
@@ -65,9 +70,9 @@ passport.use(new localStrategy(
                 return done(null,false) 
             }
             done(null,user) 
-        }).catch(done)
+        })
+        .catch(done)
     }
 ))
 
-module.exports=passport
-//
+module.exports = passport

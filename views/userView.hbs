@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Portal</title>
-    
 </head>
 <body>
+    <h1>Hello {{user}}</h1>
     <h3>Book Flights</h3>
     <form method="POST" action="/user/search">
         <label for="from">Source</label>
@@ -17,81 +17,47 @@
 
         <label for="date">Start Date</label>
         <input name="startDate" id="date">
-        {{!-- <select name="travellers" id="travellers">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-        </select> --}}
         <input type="submit" name="submit">
     </form>
     <br>
+
+    <div id="f_description"> </div>
+     <form action="/" method="POST" id="booking_input"></form> 
+
     <table id="table" cellspacing="10" border="1" cellpadding="10">
         {{#if flights}}
-        <tr>
-            <th>Name </th>
-            <th>Source</th>
-            <th>Destination</th>
-            <th>Price</th>
-            <th>Start Date</>
-            <th>Start Time</th>
-            <th>End Date</th>
-            <th>End Time</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Name </th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Start Date</th>
+                <th>Start Time</th>
+                <th>End Date</th>
+                <th>End Time</th>
+                <th>Seats left</th>
+            </tr>
+        </thead>
         {{/if}}
-		{{#each flights as |item|}}
-			<tr>
-				<td>{{item.flightName}}</td>
-				<td>{{item.source}}</td>
-				<td>{{item.destination}}</td>
-				<td>{{item.startDate}}</td>
-				<td>{{item.startTime}}</td>
-				<td>{{item.endDate}}</td>
-				<td>{{item.endTime}}</td>
-				<td>{{item.price}}</td>
-			</tr>
-		{{/each}}
-    </table>
-    
-      <form action="/user/history" METHOD = "POST">
-        <input type="text" value={{user}} name = "user">
-         Click here to watch history:
-         <input type="submit" name="submit">
-      </form>
-     <h2>History</h2>
-     {{!-- <button id="history">History</button> --}}
-     <table id="table" cellspacing="10" border="1" cellpadding="10">
-        {{#if history}}
-        <tr>
-            <th>Ticket_id</th>
-            <th>Flight name</th>
-            <th>Username</th>
-            <th>startDate</th>
-            <th>Passenger Name</th>
-            <th>Age</th>
-            <th>Seat Number</th>
-            <th>Gender</th>
-            <th>Source</th>
-            <th>Destination</th>
-            <th>Price</th>
-        </tr>
-        {{/if}}
-		{{#each history as |item|}}
-			<tr>
-				<td>{{item.T_id}}</td>
-				<td>{{item.flight_name}}</td>
-				<td>{{item.username}}</td>
-				<td>{{item.startDate}}</td>
-				<td>{{item.pass_name}}</td>
-				<td>{{item.pass_age}}</td>
-				<td>{{item.pass_seat_num}}</td>
-				<td>{{item.source}}</td>
-				<td>{{item.destination}}</td>
-				<td>{{item.price}}</td>
-			</tr>
-		{{/each}}
+        <tbody>
+            {{#each flights as |item|}}
+                <tr class = "book">
+                    <td>{{item.flightName}}</td>
+                    <td>{{item.source}}</td>
+                    <td>{{item.destination}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.startDate}}</td>
+                    <td>{{item.startTime}}</td>
+                    <td>{{item.endDate}}</td>
+                    <td>{{item.endTime}}</td>
+                    <td>{{item.seats_left}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
     </table>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="../user_script.js"></script>
 </html>
+         

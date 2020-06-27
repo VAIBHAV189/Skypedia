@@ -1,3 +1,4 @@
+
 const route=require('express').Router()
 const Users=require('../passportDb').Users
 const passport=require('../passport')
@@ -5,7 +6,6 @@ const passport=require('../passport')
 route.get('/login',(req,res)=>{
     res.render("login")
 })
-
 
 route.get('/signUp',(req,res)=>{
     res.render("signUp")
