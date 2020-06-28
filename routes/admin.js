@@ -32,8 +32,6 @@ route.get('/',(req,res)=>{
     else
         return res.redirect('/root/login')
 })
-    
-
 
 route.get('/search',(req,res)=>{
     if(req.user && req.user.username === 'admin') {

@@ -17,25 +17,42 @@ $(()=>{
            and will Land on `+destination +` at `+ endDate+`, `+ endTime+` IST 
            <br> Price per seat: `+ Price +`
            <br> Total seats left: `+ seatsLeft+`
-           <br> Enter total Seats that you want &nbsp &nbsp <input type="Number" id="seats">&nbsp &nbsp <button id="Add_rows">Start Booking</button><br> <br> `
+           <br> Enter total Seats that you want &nbsp &nbsp <input type="Number" id="seats">&nbsp &nbsp <button id="Booking_redirect">Start Booking</button><br> <br> `
        )
-       $('#Add_rows').click(function(){
+       $('#Booking_redirect').click(function(){
            let num = $('#seats')
-           if(num.val()>seatsLeft) {
-               num.val() = ''
+           if(Number(num.val())>seatsLeft) {
+               num.val('')
                alert('Cant book these many tickets') 
                return
            }
-           let seats = num.val()
-           let add_here = ''
-           for(let i=1;i<=seats;i++) {
-               add_here = add_here + `<label for=name"`+i+`">Passenger Name</label> <input type="text" id=name"`+i+`"> &nbsp&nbsp&nbsp&nbsp
-               <label for=age"`+i+`">Passenger Age</label> <input type="Number" id=age"`+i+`"> &nbsp&nbsp&nbsp&nbsp
-               <label for=gender"`+i+`">Gender</label> <input type="text" id=gender"`+i+`"> <br>
-               <hr>`
+          
+           let obj = {
+               f_name: f_name,
+               source: source,
+               startDate: startDate,
+               startTime: startTime,
+               destination: destination,
+               endDate: endDate,
+               endTime: endTime,
+               Price: Price,
+               seats: Number(num.val())
            }
-           add_here += '<br>'
-           $('#booking_input').html(add_here)   
+           $.post('/user/booking',{obj})
+           return    
        })
     })
 })
+
+
+
+//    let seats = num.val()
+        //    let add_here = ''
+        //    for(let i=1;i<=seats;i++) {
+        //        add_here = add_here + `<label for=name"`+i+`">Passenger Name</label> <input type="text" id=name"`+i+`"> &nbsp&nbsp&nbsp&nbsp
+        //        <label for=age"`+i+`">Passenger Age</label> <input type="Number" id=age"`+i+`"> &nbsp&nbsp&nbsp&nbsp
+        //        <label for=gender"`+i+`">Gender</label> <input type="text" id=gender"`+i+`"> <br>
+        //        <hr>`
+        //    }
+        //    add_here += '<br>'
+        //    $('#booking_input').html(add_here) 
