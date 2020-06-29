@@ -10,7 +10,6 @@ const passport=require('./passport.js')
 // const { nextTick } = require('process')
 server.use(express.json())
 server.use(express.urlencoded({extended:true}))
-
 server.use(session({
     secret:'Myencoderstring',
     resave:false,

@@ -1,0 +1,15 @@
+#backimage{
+    height: 700px;
+    background-image: url(../images/aeroplane.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.navbar{
+    background-color: rgba(8, 8, 8, 0.945);
+}
+.bar{
+    padding-right: 10px;
+}
+.username{
+    padding-top:0.5em;
+}
