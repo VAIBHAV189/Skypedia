@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello {{obj.user}}</h1>
+    <form action="/confirm_booking">
+       <label for="f_name">Flight Name</label> <input type="text" value={{f_name}} id="f_name" disabled> &nbsp; &nbsp;
+       <label for="source">From</label> <input type="text" value={{source}} id="source" disabled> &nbsp; &nbsp;
+       <label for="destination">To</label> <input type="text" value={{destination}} id="destination" disabled> &nbsp; &nbsp; <br> <br>
+       <label for="startDate">Departure-Date</label> <input type="text" value={{startDate}} id="startDate" disabled> &nbsp; &nbsp;
+       <label for="startTime">Departure-Time</label> <input type="text" value={{startTime}} id="startTime" disabled> &nbsp; &nbsp;<br> <br>
+       <label for="endDate">Arrival-Date</label> <input type="text" value={{endDate}} id="endDate" disabled> &nbsp; &nbsp;
+       <label for="endTime">Arrival-Time</label> <input type="text" value={{endTime}} id="endTime" disabled> &nbsp; &nbsp; <br> <br>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{!-- <script type="text/x-handlebars">
+    Handlebars.registerHelper('times', function(n, block) {
+        var accum = '';
+        for(var i = 0; i < n; ++i)
+            accum += block.fn(i);
+        return accum;
+    });
+    var t = Handlebars.compile($('#t').html());
+    $('form').append(t());
+    </script> --}}
+</body>
+</html>

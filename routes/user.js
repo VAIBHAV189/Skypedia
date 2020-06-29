@@ -10,12 +10,21 @@ route.get('/',(req,res)=>{
         return res.redirect('/root/login')
 })
 
-
+route.post('/booking',(req,res)=>{
+    // console.log(req.user)
+    if(req.user) {
+        console.log(req.body)
+        req.body.user = req.user.username 
+        let obj = req.body
+        console.log(obj)
+        return res.render('booking',{obj})
+    }
+    return res.send({error: "User Invalid"})  
+})
 
 route.post('/search',(req,res)=>{
     if(req.user)
     {   
-        // console.log(req.body)
         db.searchDetailsUser(req.body)
             .then((flights)=>{
                 return res.render('userView',{flights})

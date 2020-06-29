@@ -6,8 +6,7 @@ const root=require('./routes/root').route
 const user=require('./routes/user').route
 const session=require('express-session')
 const passport=require('./passport.js')
-// const {db}=require('./passportDb')
-// const { nextTick } = require('process')
+
 server.use(express.json())
 server.use(express.urlencoded({extended:true}))
 server.use(session({
