@@ -38,7 +38,7 @@ $(()=>{
                Price: Price,
                seats: Number(num.val())
            }
-           $.post('/user/booking',{obj})
+           $.post('/user/booking',obj)
            return    
        })
     })
