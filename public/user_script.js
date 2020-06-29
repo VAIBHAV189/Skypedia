@@ -1,6 +1,8 @@
 $(()=>{
-    $('.book').click(function(){
-       let arr = $(this).children()
+    $('#bookFlight').click(function(){
+       console.log("Clicked ")
+       let arr = $(this).parent().siblings()
+       console.log(arr)
        let f_name = arr[0].innerHTML
        let source = arr[1].innerHTML
        let destination = arr[2].innerHTML

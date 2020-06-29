@@ -1,7 +1,6 @@
 const route= require('express').Router()
 const db=require('../db')
 
-
 db.createTable()
     .then(()=>{})
     .catch((err)=>{console.log(err)})
@@ -42,13 +41,6 @@ route.get('/search',(req,res)=>{
         return res.redirect('/root/login')
 })
 
-route.get('/delete',(req,res)=>{
-    if(req.user && req.user.username === 'admin') {
-        return res.render('deleteAdmin',) 
-    }
-    else
-        return res.redirect('/root/login')
-})
 
 route.post('/',(req,res)=>{
     if(req.user&&req.user.username==='admin')
@@ -81,25 +73,6 @@ route.post('/search',(req,res)=> {
     else 
         return res.redirect('/root/login')
     
-})
-
-
-route.post('/delete',(req,res)=>{
-    if(req.user && req.user.username === 'admin')
-    // if(req.user)
-    {
-        db.deleteflightDetails(req.body)
-            .then((data)=>{
-                console.log("Successful delete")
-                return res.redirect('/admin')
-            })
-            .catch((err)=>{
-                console.log("Not found")
-                return res.send({error:"Some error detected"})
-            })
-    }
-    else
-        return res.redirect('/root/login')
 })
 
 module.exports={

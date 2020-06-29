@@ -44,7 +44,7 @@ route.post('/history',(req,res)=>{
             .then((history)=>{
                 return res.render('userView',{history})
             })
-            .catch((err)=>{
+            .catch((err)=>{ 
                 return res.send({error:"Not Found"})
             })
     }

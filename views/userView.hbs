@@ -37,6 +37,7 @@
                 <th>End Date</th>
                 <th>End Time</th>
                 <th>Seats left</th>
+                <th>Book Tickets</th>
             </tr>
         </thead>
         {{/if}}
@@ -52,6 +53,7 @@
                     <td>{{item.endDate}}</td>
                     <td>{{item.endTime}}</td>
                     <td>{{item.seats_left}}</td>
+                    <td><button id="bookFlight">Buy Now</button></td>
                 </tr>
             {{/each}}
         </tbody>

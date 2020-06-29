@@ -13,11 +13,20 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "hbs": "^4.1.1",
+    "jquery": "^3.5.1",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "sequelize": "^5.21.10",
     "sqlite": "^4.0.7",
     "sqlite3": "^4.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VAIBHAV189/Dbms-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VAIBHAV189/Dbms-Project/issues"
+  },
+  "homepage": "https://github.com/VAIBHAV189/Dbms-Project#readme"
 }

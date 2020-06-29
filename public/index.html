@@ -4,13 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="./script/jquery.js"></script>
+    <script src="./script/home.js"></script>
 </head>
 <body>
-    <h3>This is home page</h3>
-    <a href="/admin/">Go to Admin Page</a><br>
-    <a href="/user">Go to User page</a><br>
-    <a href="/root/login">Login</a><br>
-    <a href="/root/signUp">SignUp</a>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand text-light col-lg-3" href="#">AIRLINE MANAGER</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item bar">
+                <a class="nav-item nav-link active text-white " href="#">Home</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" href="/admin/">Admin</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" href="/user">User</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" id="login" href="/root/login">Login</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" id="signup" href="/root/signUp">SignUp</a>
+            </li>
+            <li class="nav-item bar username"> 
+                <span class="text-white" id="user"></span>
+            </li>
 
+            <li class="nav-item bar">
+                <a class="nav-link text-white" id="logout" href="/root/logout">Logout</a>
+            </li>    
+          </ul>
+        </div>
+      </nav>
+      <div id='backimage'>
+
+      </div>
 </body>
+<link rel="stylesheet" href="./css/home.css">
+
 </html>
