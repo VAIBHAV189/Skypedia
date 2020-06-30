@@ -8,21 +8,22 @@
 <body>
     <h1>Hello {{user}}</h1>
     <h3>Book Flights</h3>
+    <h3>See History</h3> <form action="user/history" method="POST"><input type="submit" value="History"></form>
     <form method="POST" action="/user/search">
         <label for="from">Source</label>
-        <input type="text" name="source" id="from" placeholder="source">
+        <input type="text" name="source" id="from" placeholder="source" required>
 
         <label for="to">Destination</label>
-        <input type="text" name="destination" id="to" placeholder="destination">
+        <input type="text" name="destination" id="to" placeholder="destination" required>
 
         <label for="date">Start Date</label>
-        <input name="startDate" id="date">
+        <input name="startDate" id="date" required placeholder="yyyy-mm-dd">
+
         <input type="submit" name="submit">
     </form>
     <br>
 
     <div id="f_description"> </div>
-     {{!-- <form action="/" method="POST" id="booking_input"></form>  --}}
 
     <table id="table" cellspacing="10" border="1" cellpadding="10">
         {{#if flights}}
@@ -58,8 +59,11 @@
             {{/each}}
         </tbody>
     </table>
+    <form action="/user/booking" method="POST" id="hide">
+    <label for="obj">o</label> <input type="text" name="obj" id="obj">
+    <input type="submit" id="click">
+    </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="../user_script.js"></script>
 </html>
-         
