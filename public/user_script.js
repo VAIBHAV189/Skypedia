@@ -1,8 +1,7 @@
 $(()=>{
+    $('#hide').hide()
     $('#bookFlight').click(function(){
-       console.log("Clicked ")
        let arr = $(this).parent().siblings()
-       console.log(arr)
        let f_name = arr[0].innerHTML
        let source = arr[1].innerHTML
        let destination = arr[2].innerHTML
@@ -40,12 +39,12 @@ $(()=>{
                Price: Price,
                seats: Number(num.val())
            }
-           $.post('/user/booking',obj)
-           return    
+           let val = JSON.stringify(obj)
+           $('#obj').val(val);
+           $('#click').click();
        })
     })
 })
-
 
 
 //    let seats = num.val()

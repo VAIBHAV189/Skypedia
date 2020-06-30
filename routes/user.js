@@ -11,15 +11,33 @@ route.get('/',(req,res)=>{
 })
 
 route.post('/booking',(req,res)=>{
-    // console.log(req.user)
     if(req.user) {
-        console.log(req.body)
-        req.body.user = req.user.username 
-        let obj = req.body
-        console.log(obj)
-        return res.render('booking',{obj})
+        let obj = JSON.parse(req.body.obj)
+        obj.user = req.user.username
+        return res.render('booking',obj)
     }
     return res.send({error: "User Invalid"})  
+})
+
+route.post('/confirm_booking',function(req,res){
+    if(req.user) {
+        let obj = req.body
+        obj.username = req.user.username
+        console.log('user.js')
+        console.log(obj)
+        db.confBookingUser(obj) 
+          .then((flights)=>{
+              //flights would be of the form Ticket id with username
+              console.log(flights)
+            //   let details = req.body
+            //   details.user = req.user.username
+              return res.send('succesfull')
+          }) 
+          .catch((err)=>{
+              return res.send(err)
+          })
+    }
+    else res.redirect('/login')
 })
 
 route.post('/search',(req,res)=>{
@@ -40,9 +58,11 @@ route.post('/search',(req,res)=>{
 route.post('/history',(req,res)=>{
     if(req.user)
     {
-        db.searchUserHistory(req.body)
+        let obj = {}
+        obj.user = req.user.username
+        db.searchUserHistory(obj)
             .then((history)=>{
-                return res.render('userView',{history})
+                return res.render('userhistory',{history})
             })
             .catch((err)=>{ 
                 return res.send({error:"Not Found"})
