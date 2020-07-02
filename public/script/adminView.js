@@ -1,22 +1,7 @@
-// $.get('/root/username',(data)=>{
-//     // Problem ye hai ki data mei error aane ke baad bh wo if statement satisfy kar rhaa ;P
-//     if(data)
-//     {
-//         $('#login').hide()
-//         $('#signup').hide()
-//         $('#user').html("Welcome "+data)
-//         $('#logout').prop('disabled','false')
-//         return
-//     }
-//     $('#logout').hide() 
-//     $('#user').hide()
-// })
-
 function loginCheck()
 {
     return new Promise((resolve,reject)=>{
         $.get('/root/username',(details)=>{
-            // console.log("Deatils Received " + details.login);
             resolve(details);
         })   
     })
@@ -26,7 +11,6 @@ loginCheck().then((obj)=>{
     $("#topRow").hide()
     if(obj.login==="true")
     {
-        // console.log("Here");
         $('#login').hide()
         $('#signup').hide()
         $('#user').html("Welcome " + obj.username)
@@ -69,7 +53,6 @@ function search(src,des,sd)
     if(flag)
     {
         $('#topRow').show()
-        // $("#alertSearch").prop("hidden","true")
     }
     else
     {
@@ -99,8 +82,6 @@ function sbtn(){
 }
 
 $(()=>{
-    // console.log("Script has been loaded")
-
     $('#flightDetails').hide()
     $('#insertDetails').hide()
     $('#searchDetails').hide()

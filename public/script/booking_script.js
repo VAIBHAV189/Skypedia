@@ -1,5 +1,4 @@
 $(()=>{
-    // $('#invisible').hide()
     let seat = $('#seats').val()
     let insert = ''
     for(let i=1;i<=seat;i++) {

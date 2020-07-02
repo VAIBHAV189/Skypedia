@@ -10,7 +10,6 @@ body{
     padding-right: 10px;
 }
 
-
 nav ul li {
     display: inline-block;
 }
@@ -66,7 +65,3 @@ nav ul li a:before {
     visibility: visible;
     height: 100%;
 }
-  
-
-
-
