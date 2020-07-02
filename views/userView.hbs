@@ -4,66 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Portal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/userView.css">
 </head>
 <body>
     <h1>Hello {{user}}</h1>
-    <h3>Book Flights</h3>
-    <h3>See History</h3> <form action="user/history" method="POST"><input type="submit" value="History"></form>
-    <form method="POST" action="/user/search">
-        <label for="from">Source</label>
-        <input type="text" name="source" id="from" placeholder="source" required>
+    <div class="row">
+        <div class="col-md-auto" id="col1">
+            <h3> <form action="" method="GET" class="redirects"><input type="submit" value="Book Flights" ></form></h3>
+            <h3> <form action="user/history" method="POST" class="redirects"><input type="submit" value="History"></form></h3>
+        </div>
 
-        <label for="to">Destination</label>
-        <input type="text" name="destination" id="to" placeholder="destination" required>
+        <div class="col" id="col2">
+        <form method="POST" action="/user/search" class="floating-form">
+        <h1>Search Flights</h1>
+            <div class="grid">
+                <div class="col-2-3">
+                    <div class="controls">
+                        <input type="text" name="source" id="from" class="floatLabel" size="50" required>
+                        <label for="from">Source</label>
+                    </div>          
+                </div>
+                <div class="col-1-3">
+                    <div class="controls">
+                        <input type="text" name="destination" id="to" class="floatLabel" size="50" required>
+                        <label for="to">Destination</label>
+                    </div>          
+                </div>
+            </div>
+            <div class="controls">
+                <input type="date" name="startDate" id="date" required size="50" class="floatLabel">
+                <label for="date">Start Date</label>
+            </div>
+            <input type="submit" name="submit" id="hidef_desc">
+        </form>
+        <div id="f_description"> </div>
 
-        <label for="date">Start Date</label>
-        <input name="startDate" id="date" required placeholder="yyyy-mm-dd">
-
-        <input type="submit" name="submit">
-    </form>
-    <br>
-
-    <div id="f_description"> </div>
-
-    <table id="table" cellspacing="10" border="1" cellpadding="10">
         {{#if flights}}
-        <thead>
-            <tr>
-                <th>Name </th>
-                <th>Source</th>
-                <th>Destination</th>
-                <th>Price</th>
-                <th>Start Date</th>
-                <th>Start Time</th>
-                <th>End Date</th>
-                <th>End Time</th>
-                <th>Seats left</th>
-                <th>Book Tickets</th>
-            </tr>
-        </thead>
+            <table id="table" cellspacing="10" class="customer_table" align="center">
+                <thead>
+                    <tr>
+                        <th>Name </th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>Price</th>
+                        <th>Start Date</th>
+                        <th>Start Time</th>
+                        <th>End Date</th>
+                        <th>End Time</th>
+                        <th>Seats left</th>
+                        <th>Book Tickets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each flights as |item|}}
+                        <tr class = "book">
+                            <td>{{item.flightName}}</td>
+                            <td>{{item.source}}</td>
+                            <td>{{item.destination}}</td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.startDate}}</td>
+                            <td>{{item.startTime}}</td>
+                            <td>{{item.endDate}}</td>
+                            <td>{{item.endTime}}</td>
+                            <td>{{item.seats_left}}</td>
+                            <td><button id="bookFlight">Buy Now</button></td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         {{/if}}
-        <tbody>
-            {{#each flights as |item|}}
-                <tr class = "book">
-                    <td>{{item.flightName}}</td>
-                    <td>{{item.source}}</td>
-                    <td>{{item.destination}}</td>
-                    <td>{{item.price}}</td>
-                    <td>{{item.startDate}}</td>
-                    <td>{{item.startTime}}</td>
-                    <td>{{item.endDate}}</td>
-                    <td>{{item.endTime}}</td>
-                    <td>{{item.seats_left}}</td>
-                    <td><button id="bookFlight">Buy Now</button></td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
-    <form action="/user/booking" method="POST" id="hide">
-    <label for="obj">o</label> <input type="text" name="obj" id="obj">
-    <input type="submit" id="click">
-    </form>
+            <br> <br> <br> <br> <br> <br>
+            <form action="/user/booking" method="POST" id="hide"> <label for="obj">o</label> <input type="text" name="obj" id="obj"> <input type="submit" id="click"> </form>
+        </div>
+    </div>
+    
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="../user_script.js"></script>
+<script src="../script/user_script.js"></script>
 </html>

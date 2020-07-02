@@ -1,3 +1,24 @@
+(function ($) {
+    function floatLabel(inputType) {
+      $(inputType).each(function () {
+        var $this = $(this);
+        // on focus add cladd active to label
+        $this.focus(function () {
+          $this.next().addClass("active");
+        });
+        //on blur check field and remove class if needed
+        $this.blur(function () {
+          if ($this.val() === "" || $this.val() === "blank") {
+            $this.next().removeClass();
+          }
+        });
+      });
+    }
+    // just add a class of "floatLabel to the input field!"
+    floatLabel(".floatLabel");
+})(jQuery);
+
+  
 $(()=>{
     $('#hide').hide()
     $('#bookFlight').click(function(){
@@ -18,7 +39,7 @@ $(()=>{
            and will Land on `+destination +` at `+ endDate+`, `+ endTime+` IST 
            <br> Price per seat: `+ Price +`
            <br> Total seats left: `+ seatsLeft+`
-           <br> Enter total Seats that you want &nbsp &nbsp <input type="Number" id="seats">&nbsp &nbsp <button id="Booking_redirect">Start Booking</button><br> <br> `
+           <br> Enter total Seats that you want &nbsp &nbsp <input type="Number" id="seats"  size="50" >&nbsp &nbsp <button id="Booking_redirect">Start Booking</button><br> <br> `
        )
        $('#Booking_redirect').click(function(){
            let num = $('#seats')

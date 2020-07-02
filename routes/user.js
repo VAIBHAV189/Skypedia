@@ -3,7 +3,7 @@ const db = require('../db')
 
 route.get('/',(req,res)=>{
     if(req.user) {
-        let user = req.user.username;
+        user = req.user.username;
         return res.render('userView',{user})
     }
     else 
@@ -45,7 +45,8 @@ route.post('/search',(req,res)=>{
     {   
         db.searchDetailsUser(req.body)
             .then((flights)=>{
-                return res.render('userView',{flights})
+                let user = req.user.username
+                return res.render('userView',{user,flights})
             })
             .catch((err)=>{
                 return res.send({error:"Not Found"})
