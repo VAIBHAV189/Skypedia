@@ -1,14 +1,27 @@
-$.post('/root/username',(data)=>{
-    // Problem ye hai ki data mei error aane ke baad bh wo if statement satisfy kar rhaa ;P
-    if(data)
+function loginCheck()
+{
+    return new Promise((resolve,reject)=>{
+        $.get('/root/username',(details)=>{
+            // console.log("Deatils Received " + details.login);
+            resolve(details);
+        })   
+    })
+}
+loginCheck().then((obj)=>{
+    $('#logout').hide() 
+    // $('#user').hide()
+    // console.log("Object Received : " + obj.login);
+    if(obj.login==="true")
     {
+        console.log("Here");
         $('#login').hide()
         $('#signup').hide()
-        $('#user').html("Welcome "+data)
-        $('#logout').prop('disabled','false')
-        return
+        $('#user').html("Welcome " + obj.username)
+        $('#logout').show();
     }
-    $('#logout').hide() 
-    $('#user').hide()
 })
 
+
+
+
+    

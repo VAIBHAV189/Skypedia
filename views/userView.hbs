@@ -27,37 +27,38 @@
 
     <table id="table" cellspacing="10" border="1" cellpadding="10">
         {{#if flights}}
-        <thead>
-            <tr>
-                <th>Name </th>
-                <th>Source</th>
-                <th>Destination</th>
-                <th>Price</th>
-                <th>Start Date</th>
-                <th>Start Time</th>
-                <th>End Date</th>
-                <th>End Time</th>
-                <th>Seats left</th>
-                <th>Book Tickets</th>
-            </tr>
-        </thead>
-        {{/if}}
-        <tbody>
-            {{#each flights as |item|}}
-                <tr class = "book">
-                    <td>{{item.flightName}}</td>
-                    <td>{{item.source}}</td>
-                    <td>{{item.destination}}</td>
-                    <td>{{item.price}}</td>
-                    <td>{{item.startDate}}</td>
-                    <td>{{item.startTime}}</td>
-                    <td>{{item.endDate}}</td>
-                    <td>{{item.endTime}}</td>
-                    <td>{{item.seats_left}}</td>
-                    <td><button id="bookFlight">Buy Now</button></td>
+            <thead>
+                <tr>
+                    <th>Name </th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Price</th>
+                    <th>Start Date</th>
+                    <th>Start Time</th>
+                    <th>End Date</th>
+                    <th>End Time</th>
+                    <th>Seats left</th>
+                    <th>Book Tickets</th>
                 </tr>
-            {{/each}}
-        </tbody>
+            </thead>
+            
+            <tbody>
+                {{#each flights as |item|}}
+                    <tr class = "book">
+                        <td>{{item.flightName}}</td>
+                        <td>{{item.source}}</td>
+                        <td>{{item.destination}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.startDate}}</td>
+                        <td>{{item.startTime}}</td>
+                        <td>{{item.endDate}}</td>
+                        <td>{{item.endTime}}</td>
+                        <td>{{item.seats_left}}</td>
+                        <td><button id="bookFlight">Buy Now</button></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+         {{/if}}
     </table>
     <form action="/user/booking" method="POST" id="hide">
     <label for="obj">o</label> <input type="text" name="obj" id="obj">

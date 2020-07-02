@@ -1,8 +1,31 @@
-body{
-    background-image: url(../images/aeroplane.jpg);
+/* body{
+    background-image: url(../images/adminBack.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-position: center;
+    background-size: cover;
+} */
+.adminNav{
+    font-weight: 600;
+    border-width: 2px;
 }
+.space{
+    /* padding: 5px; */
+    margin: 0.5em;
+}
+#insertDetails,
+#searchForm{
+    margin: 1rem;
+    margin-left: 1.5rem;
+}
+#flightDetails
+{
+    margin: 0.5em;
+}
+
+#searchDetails{
+    margin:0.5em;
+}
+
 .navbar{
     background-color: rgba(8, 8, 8, 0.945);
 }

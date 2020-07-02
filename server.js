@@ -26,6 +26,9 @@ server.use('/user',user)
 server.use('/root',root)
 server.use('/admin',admin)
 
+server.get("/*",(req,res)=>{
+    res.render('errorPage')
+})
 server.listen(6979,()=>{
     console.log("Server started successfully at localhost:6979")
 })
