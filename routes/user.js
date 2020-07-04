@@ -73,6 +73,10 @@ route.post('/history',(req,res)=>{
         return res.redirect('/root/login')
 })
 
+route.get("/*",(req,res)=>{
+    res.render('errorPage')
+})
+
 module.exports = {
     route
 }

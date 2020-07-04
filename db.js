@@ -157,14 +157,15 @@ function insertinschedule(obj) {
 
 function searchDetails(obj)
 {
+    console.log("Object in DB",obj)
     return new Promise((resolve,reject)=>{
         connection.query(
-            `SELECT *FROM FLIGHT_MANAGEMENT
+            `SELECT *FROM schedule
             WHERE source=? AND destination=? AND startDate=?`,
             [obj.source,obj.destination,obj.startDate],
             function(err,result)
             {
-                // console.log(result)
+                console.log(result)
                 if(err)
                     reject(err)
                 else

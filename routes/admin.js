@@ -16,26 +16,17 @@ route.get('/',(req,res)=>{
                         flights,
                         details,
                     }
-                    console.log('ans') 
+                    // console.log('ans') 
                     return res.render('adminView',ans)
                 })
                 .catch((err)=>{ 
                     return res.send(err)
                 })
-            console.log(ans)
+            // console.log(ans)
         })
         .catch((err)=>{ 
             return res.send(err)
         })
-    }
-    else
-        return res.redirect('/root/login')
-})
-
-route.get('/search',(req,res)=>{
-    if(req.user && req.user.username === 'admin') {
-        let obj = []
-        return res.render('searchAdmin',{obj})
     }
     else
         return res.redirect('/root/login')
@@ -58,23 +49,9 @@ route.post('/',(req,res)=>{
     
 })
 
-route.post('/search',(req,res)=> {
-    if(req.user && req.user.username === 'admin') {
-        db.searchDetails(req.body)
-        .then((flights)=>{
-            console.log(flights)
-            return res.render('searchAdmin',{flights})
-        })
-        .catch((err)=>{
-            console.log("Not found")
-            return res.send({error:"Not Found"})
-        })
-    }
-    else 
-        return res.redirect('/root/login')
-    
+route.get("/*",(req,res)=>{
+    res.render('errorPage')
 })
-
 module.exports={
     route
 }

@@ -3,85 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Page</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/adminPage.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script src="../script/jquery.js"></script>
+	<script src="../script/adminView.js"></script>
+    
+
 </head>
 <body>
-    <form method="POST" action="/admin">
-		<h5>Insert New Details</h5>
-		<input type="text" id="flightId" name="flightId" placeholder="Flight ID">
-		<input type="text" id="flightName" name="flightName" placeholder="Flight Name">
-		<br>
-		<input type="text" id="source" name="source" placeholder="Source">
-		<input type="text" id="destination" name="destination" placeholder="Destination">
-		<br>
-		<input type="text" id="price" name="price" placeholder="Price">
-		<input type="text" id="seats" name="seats" placeholder="Capacity">
-		<br>
-		<label for="startDate">Start Date:</label>
-		<input type="date" id="startDate" name="startDate" placeholder="Start Date">
-		<label for="startTime">Start Time:</label>
-		<input type="time" id="startTime" name="startTime" placeholder="Start Time">
-		<br>
-		<label for="endDate">End Date:</label>
-		<input type="date" id="endDate" name="endDate" placeholder="End Date">
-		<label for="endTime">End Time:</label>
-		<input type="time" id="endTime" name="endTime" placeholder="Ending Time">
-		<br>
-		<input type="submit" id="submit" name="submit">
-		<br><br><br>
-    </form>
+	{{!-- -------------------------------------------NAVBAR-----------------------------------------------------------------}}
+	<nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand text-light col-lg-3" href="/">AIRLINE MANAGER</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <nav class="justify-content-end collapse navbar-collapse shift" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item bar">
+                <a class="nav-item nav-link active text-white " href="/">Home</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" href="/admin/">Admin</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" href="/user">User</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" id="login" href="/root/login">Login</a>
+            </li>
+            <li class="nav-item bar">
+                <a class="nav-item nav-link text-white" id="signup" href="/root/signUp">SignUp</a>
+            </li>
+            <li class="nav-item bar username"> 
+                <span class="text-white" id="user"></span>
+            </li>
 
-    <a href="/admin/search">Search Flights</a>
-    <br><br><br>
+            <li class="nav-item bar">
+                <a class="nav-link text-white" id="logout" href="/root/logout">Logout</a>
+            </li>    
+          </ul>
+        </nav>
+	</nav>
+	{{!-- ---------------------------------------------------------------------------------------------------------------------------------- --}}
 
-    <table id="details" cellspacing="10" border="1" cellpadding="10">
-        {{#if flights}}
-			<tr>
-				<th>FId</th>
-				<th>Name </th>
-				<th>Source</th>
-				<th>Destination</th>
-				<th>Price</th>
-				<th>Start Date</th>
-				<th>Start Time</th>
-				<th>End Date</th>
-				<th>End Time</th>
-				<th>Seats_Left</th>
-			</tr>
-		{{/if}}
-		{{#each flights as |item|}}
-			<tr>
-				<td>{{item.flightId}}</td>
-				<td>{{item.flightName}}</td>
-				<td>{{item.source}}</td>
-				<td>{{item.destination}}</td>
-				<td>{{item.price}}</td>
-				<td>{{item.startDate}}</td>
-				<td>{{item.startTime}}</td>
-				<td>{{item.endDate}}</td>
-				<td>{{item.endTime}}</td>
-				<td>{{item.seats_left}}</td>
-			</tr>
-		{{/each}}
-    </table>
-	<br> <br> <br>
+	{{!-- --------------------------------------------------------ADMIN PAGE BUTTONS------------------------------------------- --}}
+	<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item bar space">
+					<button id="fdbtn" class="btn btn-outline-success adminNav active" type="button">Flight Details</button>				
+				</li>
+				<li class="nav-item bar space">
+					<button id="inbtn" class="btn btn-outline-danger adminNav active" type="button">Insert Details</button>
+				</li>		
+				<li class="nav-item bar space">
+					<button id="sbtn" class="btn btn-outline-warning adminNav active" type="button">Search Details</button>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	{{!-- ------------------------------------------------------------------------------------------------------------------------------------}}
 
-    <table id="flight_info" cellspacing="10" border="1" cellpadding="10">
-        {{#if details}}
-			<tr>
-				<th>FId</th>
-				<th>Name </th>
-				<th>Capacity</th>
-			</tr>
-		{{/if}}
-		{{#each details as |item|}}
-			<tr>
-				<td>{{item.flight_id}}</td>
-				<td>{{item.flight_name}}</td>
-				<td>{{item.capacity}}</td>
-			</tr>
-		{{/each}}
-    </table>
+	
+	{{!-- -------------------------------------------------------------INSERT DETAILS---------------------------------------------------------}}
+	<div id="insertDetails">
+		<form method="POST" action="/admin">
+			<h5>Insert New Details</h5>
+			<div class="row">
+				<input type="text" id="flightId" name="flightId" class="col-lg-2 form-control" placeholder="Flight ID">
+				<input type="text" id="flightName" name="flightName" class="col-lg-2 form-control" placeholder="Flight Name">
+			</div>
+			<div class="row">
+				<input type="text" id="source" name="source" class="col-lg-2 form-control" placeholder="Source">
+				<input type="text" id="destination" name="destination" class="col-lg-2 form-control" placeholder="Destination">
+			</div>
+			<div class="row">
+				<input type="text" id="price" name="price" class="col-lg-2 form-control" placeholder="Price">
+				<input type="text" id="seats" name="seats" class="col-lg-2 form-control" placeholder="Capacity">
+			</div>
+			<div class="row">
+				<label for="startDate" class="input-group-text">Start Date:</label>
+				<input type="date" id="startDate" name="startDate" class="col-lg-2 form-control" placeholder="Start Date">
+				<label for="startTime" class="input-group-text">Start Time:</label>
+				<input type="time" id="startTime" name="startTime" class="col-lg-2 form-control" placeholder="Start Time">
+			</div>
+			<div class="row">
+				<label for="endDate" class="input-group-text">End Date:</label>
+				<input type="date" id="endDate" name="endDate" class="col-lg-2 form-control" placeholder="End Date">
+				<label for="endTime" class="input-group-text">End Time:</label>
+				<input type="time" id="endTime" name="endTime" class="col-lg-2 form-control" placeholder="Ending Time">
+			</div>
+			<br>
+			<div class="row">
+				<input type="submit" id="submit" class="col-lg-1 form-control btn-primary" name="submit">
+			</div>
+		</form>
+	</div>
+    {{!-- ------------------------------------------------------------------------------------------------------------------------------------}}
+
+	{{!------------------------------------------------------------Flight Details------------------------------------------------------------}}
+	
+	<div id="flightDetails" >
+		<h4 class="text-center"><mark>Flight Schedule</mark></h4>
+		<br>
+		<table id="details" class="table table-hover border-dark table-info border border-dark">
+			{{#if flights}}
+				<tr class="font-weight-bold text-white text-monospace bg-dark">
+					<th>FId</th>
+					<th>Name </th>
+					<th>Source</th>
+					<th>Destination</th>
+					<th>Price</th>
+					<th>Start Date</th>
+					<th>Start Time</th>
+					<th>End Date</th>
+					<th>End Time</th>
+					<th>Seats_Left</th>
+				</tr>
+			{{/if}}
+			{{#each flights as |item|}}
+				<tr class="text-monospace text-capitalize">
+					<td class="flightId">{{item.flightId}}</td>
+					<td class="flightName">{{item.flightName}}</td>
+					<td class="source">{{item.source}}</td>
+					<td class="destination">{{item.destination}}</td>
+					<td class="price">{{item.price}}</td>
+					<td class="startDate">{{item.startDate}}</td>
+					<td class="startTime">{{item.startTime}}</td>
+					<td class="endDate">{{item.endDate}}</td>
+					<td class="endTime">{{item.endTime}}</td>
+					<td class="seatsLeft">{{item.seats_left}}</td>
+				</tr>
+			{{/each}}
+		</table>
+		<br> <br> <br>
+		<h4 class="text-center"><mark>Flight Details</mark></h4>
+		<br>
+		<table id="flight_info" class="table table-hover table-success border border-dark">
+			{{#if details}}
+				<tr class="text-white bg-dark">
+					<th>FId</th>
+					<th>Name </th>
+					<th>Capacity</th>
+				</tr>
+			{{/if}}
+			{{#each details as |item|}}
+				<tr class="text-monospace">
+					<td>{{item.flight_id}}</td>
+					<td>{{item.flight_name}}</td>
+					<td>{{item.capacity}}</td>
+				</tr>
+			{{/each}}
+		</table>
+	</div>
+	{{!--------------------------------------------------------------------------------------------------------------------------------------}}
+
+	{{!-----------------------------------------------------------Search Admin---------------------------------------------------------------}}
+	<div id="searchDetails">
+		<div id="searchForm">
+        	<h5>Search Details</h5>
+            <div class="row">
+                <input type="text" id="src" name="source" class="col-lg-2 form-control" placeholder="Source" required>
+            </div>
+            <div class="row">
+                <input type="text" id="des" name="destination" class="col-lg-2 form-control" placeholder="Destination" required>
+            </div>
+            <div class="row">
+                <label for="sd" class="input-group-text">Start Date:</label>
+                <input type="date" id="sd" name="startDate" class="col-lg-2 form-control" placeholder="Start Date" required>
+            </div>
+            <br>
+            <div class="row">
+                <input type="submit" id="searchSubmit" class="col-lg-1 form-control btn-primary" name="submit">
+            </div>
+		</div>
+		<div id="alertSearch" class="alert alert-warning alert-dismissible fade show" role="alert" >
+			<strong>Sorry!! No such flights found.</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<table id="searchTable" class="table table-hover table-danger border border-dark">
+			<thead>
+				<tr id="topRow" class="font-weight-bold text-white text-monospace bg-dark">
+					<th>FId</th>
+					<th>Name </th>
+					<th>Source</th>
+					<th>Destination</th>
+					<th>Price</th>
+					<th>Start Date</th>
+					<th>Start Time</th>
+					<th>End Date</th>
+					<th>End Time</th>
+					<th>Seats_Left</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+
+		</table>
+	</div>
+
+
 	
 </body>
 </html>
