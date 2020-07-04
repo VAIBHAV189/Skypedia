@@ -4,19 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/booking.css">
 </head>
 <body>
     <h1>Hello {{user}}</h1>
     <form action="confirm_booking" method="POST" id="all_details" onsubmit="this.querySelectorAll('input').forEach(i => i.disabled = false)" >
-       <label for="f_name">Flight Name</label> <input type="text" name="f_name" value={{f_name}} id="f_name" disabled> &nbsp; &nbsp;
-       <label for="source">From</label> <input type="text" value={{source}}  name="source" id="source" disabled> &nbsp; &nbsp;
-       <label for="destination">To</label> <input type="text" value={{destination}}  name="destination" id="destination" disabled> &nbsp; &nbsp; <br> <br>
-       <label for="startDate">Departure-Date</label> <input type="text" value={{startDate}}  name="startDate" id="startDate" disabled> &nbsp; &nbsp;
-       <label for="startTime">Departure-Time</label> <input type="text" value={{startTime}}  name="startTime" id="startTime" disabled> &nbsp; &nbsp;<br> <br>
-       <label for="endDate">Arrival-Date</label> <input type="text" value={{endDate}}  name="endDate" id="endDate" disabled> &nbsp; &nbsp;
-       <label for="endTime">Arrival-Time</label> <input type="text" value={{endTime}}  name="endTime" id="endTime" disabled> &nbsp; &nbsp; <br> <br>
-       <label for="seats">Price</label> <input type="text" id="price" name="price" value={{Price}} disabled>
-       <label for="seats">Seats u will Book</label> <input type="text" id="seats" name="seats" value={{seats}} disabled> <br> <br>
+        <div class="grid">
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" name="f_name" value={{f_name}} id="f_name"  class = "floatingLabel" disabled> 
+                    <label for="f_name">Flight Name</label>  &nbsp; &nbsp;
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" value={{source}}  name="source" id="source" class = "floatingLabel"  disabled> 
+                    <label for="source">From</label> &nbsp; &nbsp;
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" value={{destination}}  name="destination" id="destination" class = "floatingLabel"  disabled> 
+                    <label for="destination">To</label> &nbsp; &nbsp; <br> <br>
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" value={{startDate}}  name="startDate" id="startDate" class = "floatingLabel"  disabled> 
+                    <label for="startDate">Departure-Date</label>  &nbsp; &nbsp;
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" value={{startTime}}  name="startTime" id="startTime"  class = "floatingLabel" disabled> 
+                    <label for="startTime">Departure-Time</label>  &nbsp; &nbsp;<br> <br>
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" value={{endDate}}  name="endDate" id="endDate" class = "floatingLabel"  disabled> 
+                    <label for="endDate">Arrival-Date</label>  &nbsp; &nbsp;
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" value={{endTime}}  name="endTime" id="endTime" class = "floatingLabel"  disabled> 
+                    <label for="endTime">Arrival-Time</label>  &nbsp; &nbsp; <br> <br>
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                    <input type="text" id="price" name="price" value={{Price}} disabled> 
+                    <label for="seats">Price</label> 
+                </div>          
+            </div>
+            <div class="col-2-3">
+                <div class="controls">
+                        <input type="text" id="seats" name="seats" value={{seats}} class = "floatingLabel" disabled> 
+                        <label for="seats">Seats u will Book</label> <br> <br>
+                </div>          
+            </div>
+        </div>
 
     </form>
     

@@ -63,7 +63,7 @@ route.post('/history',(req,res)=>{
         obj.user = req.user.username
         db.searchUserHistory(obj)
             .then((history)=>{
-                return res.render('userhistory',{history})
+                return res.render('userhistory',{obj,history})
             })
             .catch((err)=>{ 
                 return res.send({error:"Not Found"})

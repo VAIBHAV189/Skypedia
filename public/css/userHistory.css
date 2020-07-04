@@ -1,0 +1,87 @@
+/* for tables */
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap");
+
+
+/* for background image */
+
+body {
+    background-image: url('../images/background.jpg');
+}
+
+/* General Setup */
+/* Table */
+
+table {
+	font-size: 1em;
+	font-family: "Noto Sans KR", sans-serif;
+	width: 100%;
+	/* max-width: 1024px; */
+	margin-right: 0%;
+	border-collapse: collapse;
+	text-align: center;
+    box-shadow: 0 2px 2px #fd0a0a;
+    color: rgb(7, 7, 7);
+}
+
+thead th {
+	background-color: #204051;
+}
+
+caption,thead th {
+	color: #fff;
+}
+
+td{
+    padding: 0.2% 0.3%; 
+}
+
+th {
+	padding: 10px 5px;
+}
+
+tbody th,
+tbody td {
+	text-align: center;
+}
+
+tbody tr {
+	border-bottom: 2px solid transparent;
+}
+
+tbody tr:hover {
+	border-bottom: 2px solid #84a9ac;
+}
+
+tbody tr:nth-of-type(even) {
+	background-color: #e7dfd5;
+}
+
+/* Media Queries */
+@media (max-width: 320px) {
+	.customer-table {
+		font-size: 0.55em;
+	}
+}
+
+@media (min-width: 411px) {
+	.customer-table {
+		font-size: 0.71875em; /*11.5px*/
+	}
+}
+
+@media (min-width: 768px) {
+	body {
+		font-size: 1.125em; /*16px*/
+	}
+
+	caption {
+		padding: 20px;
+	}
+}
+
+@media (min-width: 1024px) {
+	body {
+		font-size: 1.25em; /*20px*/
+	}
+}

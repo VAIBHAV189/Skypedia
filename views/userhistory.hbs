@@ -4,48 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/userHistory.css">
 </head>
 <body>
-    <h1>Hello {{history}}</h1>        {{!-- ise theek kariyo username laana hai yahan pe--}}
-    <table id="table" cellspacing="10" border="1" cellpadding="10">
+
+    <div >  
+        <h1>Hello {{obj.user}}</h1>  
+    </div>
         {{#if history}}
-        <thead>
-            <tr>
-                <th>Ticket Id</th>
-                <th>Flight Name</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Seat Number</th>
-                <th>Source</th>
-                <th>Start Date</th>
-                <th>Start Time</th>
-                <th>Destination</th>
-                <th>End Date</th>
-                <th>End Time</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        {{/if}}
-        <tbody>
-            {{#each history as |item|}}
-                <tr class = "book">
-                    <td>{{item.T_id}}</td>
-                    <td>{{item.flight_name}}</td>
-                    <td>{{item.pass_name}}</td>
-                    <td>{{item.pass_age}}</td>
-                    <td>{{item.pass_gender}}</td>
-                    <td>{{item.pass_seat_num}}</td>
-                    <td>{{item.source}}</td>
-                    <td>{{item.startDate}}</td>
-                    <td>{{item.startTime}}</td>
-                    <td>{{item.destination}}</td>
-                    <td>{{item.endDate}}</td>
-                    <td>{{item.endTime}}</td>
-                    <td>{{item.price}}</td>
+        <table align="center">
+            <thead>
+                <tr>
+                    <th>Ticket Id</th>
+                    <th>Flight Name</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Seat Number</th>
+                    <th>Source</th>
+                    <th>Start Date</th>
+                    <th>Start Time</th>
+                    <th>Destination</th>
+                    <th>End Date</th>
+                    <th>End Time</th>
+                    <th>Price</th>
                 </tr>
-            {{/each}}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {{#each history as |item|}}
+                    <tr class = "book">
+                        <td>{{item.T_id}}</td>
+                        <td>{{item.flight_name}}</td>
+                        <td>{{item.pass_name}}</td>
+                        <td>{{item.pass_age}}</td>
+                        <td>{{item.pass_gender}}</td>
+                        <td>{{item.pass_seat_num}}</td>
+                        <td>{{item.source}}</td>
+                        <td>{{item.startDate}}</td>
+                        <td>{{item.startTime}}</td>
+                        <td>{{item.destination}}</td>
+                        <td>{{item.endDate}}</td>
+                        <td>{{item.endTime}}</td>
+                        <td>{{item.price}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
 </body>
 </html>
