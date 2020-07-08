@@ -289,7 +289,6 @@ function makeid(length) {
 function confBookingUser(obj) {
     return new Promise((resolve,reject)=>{
         let seats = obj.seats
-        // console.log(obj)
         //generate payment_id
         let payment_id = makeid(10)
         //find flight_id 
@@ -301,11 +300,9 @@ function confBookingUser(obj) {
             function(err,result) 
             {
                 if(err) {
-                    // console.log('flight_id') 
                     reject(err)
                 }
                 else {
-                    // console.log("one"+result[0].flightId)
                     flight_id = result[0].flightId
 
                     //to run next queries synchronously
@@ -324,9 +321,7 @@ function confBookingUser(obj) {
                                     }
                                     else {
                                         seat_num = result[0].seats_left
-                                        // console.log("two"+seat_num)
                                         seat_num--
-                                        // console.log("three"+seat_num)
                                         //decrement seats left by one
                                         connection.query(
                                             `UPDATE schedule 
@@ -405,8 +400,8 @@ function confBookingUser(obj) {
                                                 ret_obj.startTime = obj.startTime
                                                 ret_obj.endDate = obj.endDate
                                                 ret_obj.endTime = obj.endTime
-                                                ret_obj.payment = payment*(100)/118
-                                                ret_obj.payment_gst = payment
+                                                ret_obj.payment = (payment*(100)/118).toPrecision(7)
+                                                ret_obj.payment_gst = payment.toPrecision(7)
                                                 ret_obj.flightId = flight_id
                                                 resolve(ret_obj)
                                             }

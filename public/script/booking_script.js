@@ -1,4 +1,27 @@
 $(()=>{
+
+  //-----------------------------------------------------------------------Login checker------------------------------------------------------------//
+  function loginCheck()
+  {
+      return new Promise((resolve,reject)=>{
+          $.get('/root/username',(details)=>{
+              resolve(details);
+          })   
+      })
+  }
+  loginCheck().then((obj)=>{
+      $('#logout').hide() 
+      $("#topRow").hide()
+      if(obj.login==="true")
+      {
+          $('#login').hide()
+          $('#signup').hide()
+          $('#user').html("Welcome " + obj.username)
+          $('#logout').show();
+      }
+  })
+
+  //-------------------------------------------------------PROVIDE OPTIONS FOR ADDING INFO------------------------------------------------------//
   let seat = $('#seats').val()
   let insert = ''
   for(let i=1;i<=seat;i++) {
@@ -29,10 +52,10 @@ $(()=>{
       </div>`
   }
   console.log(insert)
-  // insert += `<input type="submit" value="Pay and Book Ticket"> <br><br>`
   $('#add_here').append(insert)
 
-
+  
+  //----------------------------------------------------FOR FLOATING INPUT LABEL----------------------------------------------------------------//
   function floatLabel(inputType) {
     $(inputType).each(function () {
       var $this = $(this);

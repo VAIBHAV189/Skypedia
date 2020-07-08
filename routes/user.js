@@ -34,15 +34,17 @@ route.post('/booking',(req,res)=>{
 })
 
 route.post('/confirm_booking',function(req,res){
-    if(req.user) {
+    if(req.user) 
+    {
+        console.log('refresh')
+        // console.log(req.body)
+        // if(req.body.result != undefined) return res.render('reciept',req.body)
+
         let obj = req.body
         obj.username = req.user.username
-        // console.log('user.js')
-        // console.log(obj)
         db.confBookingUser(obj) 
           .then((flights)=>{
               //flights contain all information about transaction
-              console.log(flights)
               flights.date = getDate().toDateString()
               return res.render('reciept',flights)
           }) 
@@ -50,7 +52,7 @@ route.post('/confirm_booking',function(req,res){
               return res.send(err)
           })
     }
-    else res.redirect('root/login')
+    else res.redirect('/root/login')
 })
 
 route.post('/search',(req,res)=>{
@@ -59,6 +61,10 @@ route.post('/search',(req,res)=>{
         db.searchDetailsUser(req.body)
             .then((flights)=>{
                 let user = req.user.username
+                if(flights[0] == undefined) 
+                {    let empty  = {}
+                    return res.render('userView',{user,empty})
+                }
                 return res.render('userView',{user,flights})
             })
             .catch((err)=>{
