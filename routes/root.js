@@ -1,15 +1,18 @@
 const route=require('express').Router()
 const Users=require('../passportDb').Users
 const passport=require('../passport')
-const express=require('express')
-const { prototype } = require('mysql2/lib/connection')
 
-
+//---------------------------------------------Login Handler----------------------------------------//
 route.get('/login',(req,res)=>{
-    // console.log(req.user)
     res.render("login")
 })
 
+route.post('/login',passport.authenticate('local',{
+    failureRedirect:'/root/login',
+    successRedirect:'/'
+}))
+
+//-------------------------------------------SignUp Handler----------------------------------------//
 route.get('/signUp',(req,res)=>{
     res.render("signUp")
 })
@@ -25,17 +28,14 @@ route.post('/signUp',(req,res)=>{
     })
 })
 
-route.post('/login',passport.authenticate('local',{
-    failureRedirect:'/root/login',
-    successRedirect:'/'
-}))
-
+//----------------------------------------------------Logout Handler-------------------------------------------//
 
 route.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
 
+//---------------------------------------------------Check login status---------------------------------------//
 route.get('/username',(req,res)=>{
     let obj = req.user;
     if(req.user!=undefined)
@@ -52,6 +52,7 @@ route.get('/username',(req,res)=>{
     res.send(obj)
 })
 
+//--------------------------------------------------Error Page----------------------------------------------//
 route.get("/*",(req,res)=>{
     res.render('errorPage')
 })

@@ -1,36 +1,13 @@
-/* body{
-    background-image: url(../images/adminBack.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-} */
-.adminNav{
-    font-weight: 600;
-    border-width: 2px;
-}
-.space{
-    /* padding: 5px; */
-    margin: 0.5em;
-}
-#insertDetails,
-#searchForm{
-    margin: 1rem;
-    margin-left: 1.5rem;
-}
-#flightDetails
-{
-    margin: 0.5em;
-}
 
-#searchDetails{
-    margin:0.5em;
-}
+/*---------------------------------------------------------Navbar Styling------------------------------------------------------*/
 
 .navbar{
     background-color: rgba(8, 8, 8, 0.945);
+    font-family: Verdana;
 }
 .bar{
     padding-right: 10px;
+    text-decoration: underline;
 }
 
 
@@ -89,7 +66,74 @@ nav ul li a:before {
     visibility: visible;
     height: 100%;
 }
-  
+
+/*--------------------------------------------------------------Admin Nav-------------------------------------------------------*/
+.adminNav{
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    border-width: 2px;
+}
+
+.space{
+    margin: 0.5em;
+}
+
+/* -----------------------------------------------------------Tables styling----------------------------------------------------*/
+#insertFlight,
+#searchForm,
+#scheduleFlight{
+    margin: 1rem;
+    margin-left: 1.5rem;
+}
+#flightDetails
+{
+    margin: 0.5em;
+}
+
+#details tbody{
+    background-color: rgb(163, 6, 27);
+}
+
+
+#details tbody tr:nth-child(odd){
+    background-color: rgb(231, 225, 198);
+}    
+#details tbody tr:nth-child(even) td{
+    color:white;
+} 
+
+#searchDetails{
+    margin:0.5em;
+}
+
+#flight_info{
+    margin-bottom: 5em;
+}
+#flight_info tbody{
+    background-color:  rgb(198, 226, 231);
+}
+
+
+#flight_info tbody tr:nth-child(even){
+    background-color: rgb(16, 14, 121);
+}    
+
+#flight_info tbody tr:nth-child(even) td{
+    color:white;
+} 
 
 
 
+#searchTable tbody{
+    background-color: rgb(217, 248, 226);
+}
+
+#searchTable tbody tr:nth-child(odd){
+    background-color:  rgb(53, 77, 88);
+}    
+
+#searchTable tbody tr:nth-child(odd) td{
+    color:white;
+} 
+
+/* -----------------------------------------------------------------END----------------------------------------------------------------- */

@@ -1,3 +1,5 @@
+
+//-----------------------------------------------------------------------Login checker------------------------------------------------------------//
 function loginCheck()
 {
     return new Promise((resolve,reject)=>{
@@ -18,6 +20,7 @@ loginCheck().then((obj)=>{
     }
 })
 
+//-----------------------------------------------------------------------Admin search-------------------------------------------------------------//
 function search(src,des,sd)
 {
     let flag=0
@@ -60,27 +63,39 @@ function search(src,des,sd)
         $("#alertSearch").show()
     }
 }
+
+//-----------------------------------------------------------------Admin Nav buttons-------------------------------------------------//
 function fdbtn(){
     $('#flightDetails').show()
-    $('#insertDetails').hide()
+    $('#scheduleFlight').hide()
     $('#searchDetails').hide()
+    $('#insertFlight').hide()
 
 }
 function inbtn(){
     $('#flightDetails').hide()
-    $('#insertDetails').show()
+    $('#scheduleFlight').hide()
     $('#searchDetails').hide()
+    $('#insertFlight').show()
 
 }
 function sbtn(){
     $('#flightDetails').hide()
-    $('#insertDetails').hide()
+    $('#scheduleFlight').hide()
     $('#searchDetails').show()
     $("#alertSearch").hide()
-
-
+    $("#insertFlight").hide()
 }
 
+function schbtn()
+{
+    $('#flightDetails').hide()
+    $('#scheduleFlight').show()
+    $('#searchDetails').hide()
+    $('#insertFlight').hide()
+}
+
+//-----------------------------------------------------------Document Ready-----------------------------------------------//
 $(()=>{
     $('#flightDetails').hide()
     $('#insertDetails').hide()
@@ -97,6 +112,10 @@ $(()=>{
     
     $('#sbtn').click(()=>{
         sbtn()
+    })
+    
+    $('#schbtn').click(()=>{
+        schbtn()
     })
 
     $('#fdbtn').trigger("click")
