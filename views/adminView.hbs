@@ -16,9 +16,10 @@
 
 </head>
 <body>
-	{{!-- -------------------------------------------NAVBAR-----------------------------------------------------------------}}
+	{{!-- -----------------------------------------------------NAVBAR-----------------------------------------------------------------}}
 	<nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand text-light col-lg-3" href="/">AIRLINE MANAGER</a>
+        <a class="navbar-brand text-light" href="/">AIRLINE MANAGER</a>
+		<img src="../images/flightIcon.ico" style="height:3em">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,20 +51,23 @@
           </ul>
         </nav>
 	</nav>
-	{{!-- ---------------------------------------------------------------------------------------------------------------------------------- --}}
+	{{!-- -----------------------------------------------------------------------------------------------------------------------------------}}
 
-	{{!-- --------------------------------------------------------ADMIN PAGE BUTTONS------------------------------------------- --}}
-	<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item bar space">
+	{{!-- --------------------------------------------------------ADMIN PAGE BUTTONS--------------------------------------------------------}}
+	<nav class="bg-white">
+		<div id="navbarNav">
+			<ul class="navbar-nav" style="display: inline;">
+				<li class="bar space">
 					<button id="fdbtn" class="btn btn-outline-success adminNav active" type="button">Flight Details</button>				
 				</li>
-				<li class="nav-item bar space">
-					<button id="inbtn" class="btn btn-outline-danger adminNav active" type="button">Insert Details</button>
+				<li class="bar space">
+					<button id="schbtn" class="btn btn-outline-danger adminNav active" type="button">Schedule Flight</button>
+				</li>
+				<li class="bar space">
+					<button id="inbtn" class="btn btn-outline-primary adminNav active" type="button">Insert Flight</button>
 				</li>		
-				<li class="nav-item bar space">
-					<button id="sbtn" class="btn btn-outline-warning adminNav active" type="button">Search Details</button>
+				<li class="bar space">
+					<button id="sbtn" class="btn btn-outline-info adminNav active" type="button">Search Details</button>
 				</li>
 			</ul>
 		</div>
@@ -71,10 +75,10 @@
 	{{!-- ------------------------------------------------------------------------------------------------------------------------------------}}
 
 	
-	{{!-- -------------------------------------------------------------INSERT DETAILS---------------------------------------------------------}}
-	<div id="insertDetails">
-		<form method="POST" action="/admin">
-			<h5>Insert New Details</h5>
+	{{!-- -------------------------------------------------------------Schedule Insertion---------------------------------------------------------}}
+	<div id="scheduleFlight">
+		<form method="POST" action="/admin/schedule">
+			<h5><mark>Schedule Flight</mark></h5>
 			<div class="row">
 				<input type="text" id="flightId" name="flightId" class="col-lg-2 form-control" placeholder="Flight ID">
 				<input type="text" id="flightName" name="flightName" class="col-lg-2 form-control" placeholder="Flight Name">
@@ -85,7 +89,6 @@
 			</div>
 			<div class="row">
 				<input type="text" id="price" name="price" class="col-lg-2 form-control" placeholder="Price">
-				<input type="text" id="seats" name="seats" class="col-lg-2 form-control" placeholder="Capacity">
 			</div>
 			<div class="row">
 				<label for="startDate" class="input-group-text">Start Date:</label>
@@ -101,11 +104,32 @@
 			</div>
 			<br>
 			<div class="row">
-				<input type="submit" id="submit" class="col-lg-1 form-control btn-primary" name="submit">
+				<input type="submit" class="col-lg-1 form-control btn-primary" name="submit">
 			</div>
 		</form>
 	</div>
     {{!-- ------------------------------------------------------------------------------------------------------------------------------------}}
+
+	{{!-----------------------------------------------------------------Flight Insertion------------------------------------------------------}}
+	<div id="insertFlight">
+		<form method="POST" action="/admin/insertFlight">
+			<h5><mark>Insert Flight</mark></h5>
+			<div class="row">
+				<input type="text"  name="flightId" class="col-lg-2 form-control" placeholder="Flight ID">
+			</div>
+			<div class="row">
+				<input type="text"  name="flightName" class="col-lg-2 form-control" placeholder="Flight Name">
+			</div>
+			<div class="row">
+				<input type="number"  name="capacity" class="col-lg-2 form-control" placeholder="Capacity">
+			</div>
+			<br>
+			<div class="row">
+				<input type="submit" class="col-lg-1 form-control btn-primary" name="submit">
+			</div>
+		</form>
+	</div>
+
 
 	{{!------------------------------------------------------------Flight Details------------------------------------------------------------}}
 	
@@ -189,7 +213,7 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		<table id="searchTable" class="table table-hover table-danger border border-dark">
+		<table id="searchTable" class="table table-hover">
 			<thead>
 				<tr id="topRow" class="font-weight-bold text-white text-monospace bg-dark">
 					<th>FId</th>

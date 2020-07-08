@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     password: 'mypaaas',
     database:'airline_manager' 
 })
-//correct
+//----------------------------------------------------------Table creation----------------------------------------------------//
 function createTable()
 {
     return new Promise((resolve,reject)=>{
@@ -24,7 +24,7 @@ function createTable()
                 primary key(flightId , startTime)
             );`,
             function(err,result){
-                console.log("Table1 Created")
+                // console.log("Table1 Created")
                 if(err)
                     reject(err)
                 else
@@ -38,7 +38,7 @@ function createTable()
                 capacity INTEGER NOT NULL
             );`,
             function(err,result){
-                console.log("Table2 Created")
+                // console.log("Table2 Created")
                 if(err)
                     reject(err)
                 else
@@ -52,7 +52,7 @@ function createTable()
                 amount INTEGER NOT NULL
             );`,
             function(err,result){
-                console.log("Table3 Created")
+                // console.log("Table3 Created")
                 if(err)
                     reject(err)
                 else
@@ -72,7 +72,7 @@ function createTable()
                 payment_id varchar(30)
             );`,
             function(err,result){
-                console.log("Table4 Created")
+                // console.log("Table4 Created")
                 if(err)
                     reject(err)
                 else
@@ -81,7 +81,8 @@ function createTable()
         )
     })
 }
-//correct
+
+//---------------------------------------------------Fetching Details---------------------------------------------------//
 function getAllSchedules()
 {
     return new Promise((resolve,reject)=>{
@@ -97,7 +98,7 @@ function getAllSchedules()
         )
     })
 }
-//correct
+
 function getAllflightDetails()
 {
     return new Promise((resolve,reject)=>{
@@ -113,7 +114,26 @@ function getAllflightDetails()
         )
     })
 }
-//correct
+
+//---------------------------------------------------------------Insertion in Flight Details------------------------------------------------------//
+function insertInFlightDetails(obj) {
+    return new Promise((resolve,reject)=>{
+        connection.query(
+            `INSERT INTO flight_details(flight_id, flight_name, capacity) 
+            VALUES(?,?,?)`,
+            [obj.flightId,obj.flightName,obj.capacity],
+            function(err,result)
+            {
+                if(err)
+                    reject(err)
+                else 
+                    resolve(result)
+            }
+        )
+    })
+}
+
+//--------------------------------------------------------------Insertion in Schedule---------------------------------------------------------//
 function insertDetailsadmin(obj)
 {
     // console.log(obj)
@@ -130,30 +150,37 @@ function insertDetailsadmin(obj)
                     resolve(result)
             }
         )
+        
+    })
+      
+}
+function updateSeats(obj)
+{
+    return new Promise((resolve,reject)=>{
         connection.query(
-           `UPDATE schedule 
-            SET seats_left = (
-               SELECT capacity
-               FROM flight_details
-               WHERE flight_id = ?
-            )
-            WHERE flightId = ?;
-            `,
-            [obj.flightId , obj.flightId],
-            function(err,result) {
-                console.log(err);
+            `UPDATE schedule 
+             SET seats_left = (
+                SELECT capacity
+                FROM flight_details
+                WHERE flight_id = ? AND flight_name=?
+             )
+             WHERE flightId = ?;
+             `,
+             [obj.flightId , obj.flightName, obj.flightId],
+             function(err,result) {
                 if(err)
                     reject(err)
                 else 
+                {
+                    // console.log("Seats updated")
                     resolve(result)
-            }
-        )
+                }
+             }
+         )
     })
 }
 
-function insertinschedule(obj) {
-    
-}
+//--------------------------------------------------------------------------Search Admin-------------------------------------------------//
 
 function searchDetails(obj)
 {
@@ -165,7 +192,7 @@ function searchDetails(obj)
             [obj.source,obj.destination,obj.startDate],
             function(err,result)
             {
-                console.log(result)
+                // console.log(result)
                 if(err)
                     reject(err)
                 else
@@ -174,7 +201,8 @@ function searchDetails(obj)
         )
     })
 }
-//correct
+
+//-----------------------------------------------------------------------Search in User--------------------------------------------------// 
 function searchDetailsUser(obj)
 {
     return new Promise((resolve,reject)=>{
@@ -256,10 +284,12 @@ function makeid(length) {
     return result;
 }
 
+//---------------------------------------------------------------------------Booking Confirm user----------------------------------------------------------------//
+
 function confBookingUser(obj) {
     return new Promise((resolve,reject)=>{
         let seats = obj.seats
-        console.log(obj)
+        // console.log(obj)
         //generate payment_id
         let payment_id = makeid(10)
         //find flight_id 
@@ -270,11 +300,11 @@ function confBookingUser(obj) {
             [obj.f_name,obj.startDate],
             function(err,result) {
                 if(err) {
-                    console.log('flight_id') 
+                    // console.log('flight_id') 
                     reject(err)
                 }
                 else {
-                    console.log("one"+result[0].flightId)
+                    // console.log("one"+result[0].flightId)
                     flight_id = result[0].flightId
                     for(let i=1;i<=seats;i++) {
                     //     //retrieve last seat number
@@ -376,5 +406,7 @@ module.exports={
     deleteflightDetails,
     searchDetailsUser,
     searchUserHistory,
-    confBookingUser
+    confBookingUser,
+    updateSeats,
+    insertInFlightDetails
 }
