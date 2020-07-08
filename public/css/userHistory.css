@@ -6,7 +6,14 @@
 /* for background image */
 
 body {
-    background-image: url('../images/background.jpg');
+	background-image: url('../images/historybg.jpg');
+	background-position: center;
+}
+h1 {
+	text-align: center;
+	color: rgb(250, 16, 16);
+	font-family: "Noto Sans KR", sans-serif;
+	text-shadow: 2px 2px rgb(10, 10, 117);
 }
 
 /* General Setup */
@@ -16,12 +23,11 @@ table {
 	font-size: 1em;
 	font-family: "Noto Sans KR", sans-serif;
 	width: 100%;
-	/* max-width: 1024px; */
 	margin-right: 0%;
 	border-collapse: collapse;
 	text-align: center;
-    box-shadow: 0 2px 2px #fd0a0a;
-    color: rgb(7, 7, 7);
+	color: rgb(7, 7, 7);
+	text-shadow: 1px 1px grey;
 }
 
 thead th {

@@ -1,8 +1,8 @@
-(function ($) {
+$(()=>{
     function floatLabel(inputType) {
       $(inputType).each(function () {
-        var $this = $(this);
-        // on focus add cladd active to label
+        var $this = $(this); 
+        // on focus add class active to label
         $this.focus(function () {
           $this.next().addClass("active");
         });
@@ -16,10 +16,9 @@
     }
     // just add a class of "floatLabel to the input field!"
     floatLabel(".floatLabel");
-})(jQuery);
 
-  
-$(()=>{
+
+
     $('#hide').hide()
     $('#bookFlight').click(function(){
        let arr = $(this).parent().siblings()
@@ -34,12 +33,12 @@ $(()=>{
        let seatsLeft = arr[8].innerHTML
 
        $('#f_description').html(
-           `You have chosen Flight:`+f_name +` <br> 
-           This flight will take off from `+ source+` on `+ startDate+`, ` +startTime+` IST <br> 
-           and will Land on `+destination +` at `+ endDate+`, `+ endTime+` IST 
-           <br> Price per seat: `+ Price +`
-           <br> Total seats left: `+ seatsLeft+`
-           <br> Enter total Seats that you want &nbsp &nbsp <input type="Number" id="seats"  size="50" >&nbsp &nbsp <button id="Booking_redirect">Start Booking</button><br> <br> `
+           `<span class="info_label">You have chosen Flight: <span class="info">`+f_name +`</span> <br> 
+           This flight will take off from <span class="info"> `+ source+` on `+ startDate+`, ` +startTime+` IST </span> <br> 
+           and will Land on <span class="info">`+destination +` at `+ endDate+`, `+ endTime+` IST </span> 
+           <br> Price per seat: <span class="info">`+ Price +`</span>
+           <br> Total seats left: <span class="info">`+ seatsLeft+`</span>
+           <br> Enter total Seats that you want &nbsp &nbsp</span> <input type="Number" id="seats"  size="50" >&nbsp &nbsp <button id="Booking_redirect">Start Booking</button><br> <br> `
        )
        $('#Booking_redirect').click(function(){
            let num = $('#seats')

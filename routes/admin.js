@@ -52,6 +52,7 @@ route.post('/',(req,res)=>{
 route.get("/*",(req,res)=>{
     res.render('errorPage')
 })
+
 module.exports={
     route
 }

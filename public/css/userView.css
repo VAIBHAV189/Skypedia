@@ -1,12 +1,10 @@
-
-/* for tables */
+/* For tables */
 /* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap");
 
 /* General Setup */
 /* Table */
 .customer-table {
-	font-size: 3em;
 	font-family: "Noto Sans KR", sans-serif;
 	width: 100%;
 	max-width: 1024px;
@@ -81,23 +79,8 @@ tbody tr:nth-of-type(even) {
 
 
 
-
-
-
-
-
 /* for input boxes */
-applet, object, iframe,
- p, blockquote, pre, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, output, ruby, section, summary,
-time, mark, audio, video {
+iframe,form {
   margin: 0;
   padding: 0;
   border: 0;
@@ -106,11 +89,10 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  padding: 10px;
-  vertical-align: middle;
+th, td {
+  padding: 1%;
+  margin: 1%;
+  /* vertical-align: middle; */
 }
 
 /* Colors */
@@ -180,6 +162,7 @@ form {
   -webkit-appearance: none;
   cursor: pointer;
 }
+
 .controls label {
   position: absolute;
   left: 8px;
@@ -286,7 +269,7 @@ input[type=submit]{
 .row{
   padding-left: 20%;
   padding-right: 20%;
-  font-size: 2em;
+  font-size: 1.2em;
 }
 #hidef_desc {
   padding: 1%;
@@ -296,6 +279,24 @@ nav {
   margin-right: 3%;
   font-size: 1em;
 }
-span {
+/* span {
   font-size: 2em;
+} */
+.info_label {
+  color: blue;
+  font-size: 1.5em;
+}
+.info {
+  color: rgb(236, 142, 142);
+}
+#bg_image {
+  background: url('../images/bookingbg.jpg');
+  background-size: 100% 100%;
+  opacity: 0.9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;   
 }

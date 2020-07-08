@@ -31,7 +31,11 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each history as |item|}}
+                {{#if history.future}}
+                <tr style="color: orangered;">
+                    <td colspan="13" >Upcoming Journeys</td>
+                </tr>
+                {{#each history.future as |item|}}
                     <tr class = "book">
                         <td>{{item.T_id}}</td>
                         <td>{{item.flight_name}}</td>
@@ -48,8 +52,34 @@
                         <td>{{item.price}}</td>
                     </tr>
                 {{/each}}
+                {{/if}}
+
+                {{#if history.past}}
+                <tr style="background-color: orangered; font-weight: bolder">
+                    <td colspan="13">Past Journeys</td>
+                </tr>
+                {{#each history.past as |item|}}
+                    <tr class = "book">
+                        <td>{{item.T_id}}</td>
+                        <td>{{item.flight_name}}</td>
+                        <td>{{item.pass_name}}</td>
+                        <td>{{item.pass_age}}</td>
+                        <td>{{item.pass_gender}}</td>
+                        <td>{{item.pass_seat_num}}</td>
+                        <td>{{item.source}}</td>
+                        <td>{{item.startDate}}</td>
+                        <td>{{item.startTime}}</td>
+                        <td>{{item.destination}}</td>
+                        <td>{{item.endDate}}</td>
+                        <td>{{item.endTime}}</td>
+                        <td>{{item.price}}</td>
+                    </tr>
+                {{/each}}
+                {{/if}}
             </tbody>
         </table>
+        {{else}} 
+           <h1>No Flight History Available</h1>
         {{/if}}
 </body>
 </html>

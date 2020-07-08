@@ -13,6 +13,7 @@
 
 </head>
 <body style="background-color: rgb(252, 248, 244);">
+    <div id="bg_image"></div>
     <h1>Welcome <span style="font-weight:600;">{{user}}</span> to our Flight Booking Services</h1>
 
     {{!-- carousel --}}
@@ -94,7 +95,7 @@
 
         <div class="col" id="col2">
         <form method="POST" action="/user/search" class="floating-form">
-        <h1>Book Flights</h1>
+        <h1>Book Flights</h1> <br>
             <div class="grid">
                 <div class="col-2-3">
                     <div class="controls">
@@ -150,6 +151,7 @@
                     {{/each}}
                 </tbody>
             </table>
+        
         {{/if}}
             <br> <br> <br> <br> <br> <br>
             <form action="/user/booking" method="POST" id="hide"> <label for="obj">o</label> <input type="text" name="obj" id="obj"> <input type="submit" id="click"> </form>

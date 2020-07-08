@@ -195,6 +195,7 @@ function searchDetailsUser(obj)
         )
     })
 }
+
 function searchUserHistory(obj)
 {
     return new Promise((resolve,reject)=>{
@@ -259,7 +260,7 @@ function makeid(length) {
 function confBookingUser(obj) {
     return new Promise((resolve,reject)=>{
         let seats = obj.seats
-        console.log(obj)
+        // console.log(obj)
         //generate payment_id
         let payment_id = makeid(10)
         //find flight_id 
@@ -268,7 +269,8 @@ function confBookingUser(obj) {
             `SELECT flightId FROM schedule 
             WHERE flightName = ? AND startDate = ?`,
             [obj.f_name,obj.startDate],
-            function(err,result) {
+            function(err,result) 
+            {
                 if(err) {
                     console.log('flight_id') 
                     reject(err)
@@ -276,91 +278,114 @@ function confBookingUser(obj) {
                 else {
                     console.log("one"+result[0].flightId)
                     flight_id = result[0].flightId
-                    for(let i=1;i<=seats;i++) {
-                    //     //retrieve last seat number
-                    //     // console.log(i)
-                    //     let seat_num = 0
-                    //     connection.query(
-                    //         `SELECT seats_left FROM schedule 
-                    //         WHERE flightName = ? AND startDate = ?`,
-                    //         [obj.f_name,obj.startDate],
-                    //         function(err,result) {
-                    //             if(err) {
-                    //                 console.log('retrieve seat num') 
-                    //                 reject(err)
-                    //             }
-                    //             else {
-                    //                 seat_num = result[0].seats_left
-                    //                 console.log("two"+seat_num)
-                    //                 seat_num--
-                    //                 console.log("three"+seat_num)
-                    //                 //decrement seats left by one
-                    //                 connection.query(
-                    //                     `UPDATE schedule 
-                    //                     SET seats_left = ? WHERE flightName = ? AND startDate = ?`,
-                    //                     [seat_num,obj.f_name,obj.startDate],
-                    //                     function(err,result) {
-                    //                         // console.log('dgdgd')
-                    //                         // console.log(result)
-                    //                         // console.log(err)
-                    //                         if(err) {
-                    //                             console.log('decrement seats left') 
-                    //                             reject(err)
-                    //                         }
-                    //                     }
-                    //                 )
-                    //                 console.log('decrement done')
-                    //                 //now insert all details in booking table for ith passenger
-                    //                 let pass_name = obj["name"+i]
-                    //                 let pass_age = obj["age"+i]
-                    //                 let gender = obj["gender"+i]
-                    //                 console.log({pass_name,pass_age,gender})
-                    //                 connection.query(
-                    //                     `INSERT INTO bookings (username,flight_id,startDate,pass_name,pass_age,pass_gender,pass_seat_num,payment_id) 
-                    //                     VALUES ( ? , ? ,? , ? , ? , ? , ? , ? ) `,
-                    //                     [obj.username,flight_id,obj.startDate,pass_name,pass_age,gender,seat_num,payment_id],
-                    //                     function(err,result) {
-                    //                         if(err) {
-                    //                             console.log('main query') 
-                    //                             reject(err)
-                    //                         }
-                    //                         else {
-                    //                             console.log('main query done')
-                                                
-                    //                         }
-                    //                     }
-                    //                 )
-                    //             }
-                    //         }
-                    //     )  
-                    }
-                    //total payment that he made and update transaction info
-                    let payment = seats*obj.price
-                    connection.query(
-                        `INSERT INTO transaction_info(payment_id,user_id,amount) VALUES(?,?,?)`,
-                        [payment_id,obj.username,payment],
-                        function(err,result){
-                            if(err) {
-                                reject(err)
-                            }
-                            else {
-                                //extract and send all T_id with payment_id
-                                connection.query(
-                                    `SELECT T_id, username FROM bookings WHERE payment_id = ?`,
-                                    [payment_id],
-                                    function(err,result){
-                                        if(err) {
-                                            reject(err)
-                                        }
-                                        else {
-                                            console.log(result)
-                                            resolve(result)
-                                        }
+
+                    //to run next queries synchronously
+                    function domyJob(i) {
+                        return new Promise((resolve,reject)=>{
+                            //retrieve last seat number
+                            let seat_num = 0
+                            connection.query(
+                                `SELECT seats_left FROM schedule 
+                                WHERE flightName = ? AND startDate = ?`,
+                                [obj.f_name,obj.startDate],
+                                function(err,result) {
+                                    if(err) {
+                                        console.log('retrieve seat num') 
+                                        reject(err)
                                     }
-                                )
+                                    else {
+                                        seat_num = result[0].seats_left
+                                        // console.log("two"+seat_num)
+                                        seat_num--
+                                        // console.log("three"+seat_num)
+                                        //decrement seats left by one
+                                        connection.query(
+                                            `UPDATE schedule 
+                                            SET seats_left = ? WHERE flightName = ? AND startDate = ?`,
+                                            [seat_num,obj.f_name,obj.startDate],
+                                            function(err,result) {
+                                                if(err) {
+                                                    console.log('decrement seats left') 
+                                                    reject(err)
+                                                }
+                                                else 
+                                                {
+                                                    console.log('decrement done')
+                                                    //now insert all details in booking table for ith passenger
+                                                    let pass_name = obj["name"+i]
+                                                    let pass_age = obj["age"+i]
+                                                    let gender = obj["gender"+i]
+                                                    console.log({pass_name,pass_age,gender})
+                                                    connection.query(
+                                                        `INSERT INTO bookings (username,flight_id,startDate,pass_name,pass_age,pass_gender,pass_seat_num,payment_id) 
+                                                        VALUES ( ? , ? ,? , ? , ? , ? , ? , ? ) `,
+                                                        [obj.username,flight_id,obj.startDate,pass_name,pass_age,gender,seat_num,payment_id],
+                                                        function(err,result) {
+                                                            if(err) {
+                                                                console.log('main query err') 
+                                                                reject(err)
+                                                            }
+                                                            else {
+                                                                resolve(console.log('main query done'+i))
+                                                            }
+                                                        }
+                                                    )
+                                                }
+                                            }
+                                        ) 
+                                    }
+                                }
+                            )
+                        })
+                    }
+                    async function loop() {
+                        for(let i=1;i<=seats;i++) {
+                              await domyJob(i)
+                        }  
+                    }
+                    loop()
+                     .then(()=>{
+                         //total payment that he made and update transaction info
+                        let payment = seats*obj.price
+                        //add GST
+                        payment *= (118)/100
+                        connection.query(
+                            `INSERT INTO transaction_info(payment_id,user_id,amount) VALUES(?,?,?)`,
+                            [payment_id,obj.username,payment],
+                            function(err,result){
+                                if(err) {
+                                    reject(err)
+                                }
+                                else {
+                                    //extract and send all T_id with payment_id
+                                    connection.query(
+                                        `SELECT T_id, pass_name, pass_seat_num FROM bookings WHERE payment_id = ?`,
+                                        [payment_id],
+                                        function(err,result){
+                                            if(err) {
+                                                reject(err)
+                                            }
+                                            else {
+                                                console.log(result)
+                                                let ret_obj = {result}
+                                                ret_obj.payment_id = payment_id
+                                                ret_obj.f_name = obj.f_name
+                                                ret_obj.source = obj.source
+                                                ret_obj.destination = obj.destination
+                                                ret_obj.startDate = obj.startDate
+                                                ret_obj.startTime = obj.startTime
+                                                ret_obj.endDate = obj.endDate
+                                                ret_obj.endTime = obj.endTime
+                                                ret_obj.payment = payment
+                                                ret_obj.flightId = flight_id
+                                                resolve(ret_obj)
+                                            }
+                                        }
+                                    )
+                                }
                             }
-                        }
-                    )
+                        )
+                    })
                 }
             }
         )

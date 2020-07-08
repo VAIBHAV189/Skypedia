@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">Invoice</h1>
+    <div id="main_div">
+        <div id="heading"></div>
+        <br> <br>
+        <div>
+            <table align="center" id="pnr_table">
+                <tr>
+                    <td>
+                        <h2>Confirmation Number: {{payment_id}}</h2>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data={{payment_id}}&amp;size=100x100">
+                    </td>
+                    <td>
+                        <h2>Booking Date: {{date}}</h2>
+                    </td>
+                    <td>
+                        Status: Confirmed
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br> <br>
+        <div>
+            <table id="travel_info" alig="center">
+                <thead>
+                    <tr>
+                        <td colspan="7">Travel Information</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>TRAVEL DATE</td>
+                    <td>FLIGHT ID</td>
+                    <td>FROM</td>
+                    <td>TO</td>
+                    <td>DEP TIME</td>
+                    <td>ARR TIME</td>
+                    <td>AIRLINE</td>
+                </tr>
+                <tr>
+                    <td>{{startDate}}</td>
+                    <td>{{flightId}}</td>
+                    <td>{{source}}</td>
+                    <td>{{destination}}</td>
+                    <td>{{startDate}} / {{startTime}}</td>
+                    <td>{{endDate}} / {{endTime}}</td>
+                    <td>{{f_name}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br> <br>
+        <div>
+            <table id="pass_info">
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

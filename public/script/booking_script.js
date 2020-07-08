@@ -1,33 +1,51 @@
-(function ($) {
-    function floatLabel(inputType) {
-      $(inputType).each(function () {
-        var $this = $(this);
-        // on focus add cladd active to label
-        $this.focus(function () {
-          $this.next().addClass("active");
-        });
-        //on blur check field and remove class if needed
-        $this.blur(function () {
-          if ($this.val() === "" || $this.val() === "blank") {
-            $this.next().removeClass();
-          }
-        });
-      });
-    }
-    // just add a class of "floatLabel to the input field!"
-    floatLabel(".floatLabel");
-})(jQuery);
-
-
 $(()=>{
-    let seat = $('#seats').val()
-    let insert = ''
-    for(let i=1;i<=seat;i++) {
-        insert += ` <h3>Passenger `+i+`</h3>
-        <input type="text" id="pass_name`+i+`" name="name`+i+`"  class = "floatingLabel" required> <label for="pass_name`+i+`">Passenger Name</label> &nbsp; &nbsp;
-        <input type="text" id="pass_gender`+i+`" name="gender`+i+`"  class = "floatingLabel" required> <label for="pass_gender`+i+`" >Gender</label> &nbsp; &nbsp;
-        <input type="number" id="pass_age`+i+`" name="age`+i+`"  class = "floatingLabel" required> <label for="pass_age`+i+`">Age</label> &nbsp; &nbsp; <br> <br> `
-    }
-       insert += `<input type="submit" value="Pay and Book Ticket"> <br><br>`
-    $('#all_details').append(insert)
+  let seat = $('#seats').val()
+  let insert = ''
+  for(let i=1;i<=seat;i++) {
+      insert += ` 
+      <div class="col-2-3">
+      <h2>Passenger `+i+`</h2>
+        <div class="controls">
+          <input type="text" name="name`+i+`" id="pass_name`+i+`" class = "floatLabel"  required> 
+          <label for="pass_name`+i+`">Name</label>  &nbsp; &nbsp;
+        </div>          
+      </div>
+      <div class="col-1-3">
+        <div class="controls">
+          <select name="gender`+i+`" id="pass_gender`+i+`" required>
+            <option value="">Choose</option> 
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="O">Others</option>
+          </select>
+          <label for="pass_gender`+i+`" class="active">Gender</label>  &nbsp; &nbsp;
+        </div>          
+      </div>
+      <div class="col-1-3">
+        <div class="controls">  
+        <input type="number" name="age`+i+`" id="pass_age`+i+`" class = "floatLabel" required> 
+        <label for="pass_age`+i+`">Age</label>  &nbsp; &nbsp;
+        </div>          
+      </div>`
+  }
+  console.log(insert)
+  // insert += `<input type="submit" value="Pay and Book Ticket"> <br><br>`
+  $('#add_here').append(insert)
+
+
+  function floatLabel(inputType) {
+    $(inputType).each(function () {
+      var $this = $(this);
+      $this.focus(function () {
+        $this.next().addClass("active");
+      });
+      $this.blur(function () {
+        if ($this.val() === "" || $this.val() === "blank") {
+          $this.next().removeClass();
+        }
+      });
+    });
+  }
+  floatLabel(".floatLabel");
+
 }) 
