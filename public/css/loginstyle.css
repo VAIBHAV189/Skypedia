@@ -2,17 +2,18 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('../images/login+signup.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Dancing Script', cursive;
-font-weight: 600;
+    background-image: url('../images/login+signup.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
 }
 
 .container{
-height: 100%;
-align-content: center;
+    height: 100%;
+    align-content: center;
+    z-index: 10;
 }
 
 .card{
@@ -20,7 +21,7 @@ height: 400px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+background-color: rgba(30, 28, 32, 0.5) !important;
 }
 .card1{
 height: 450px;

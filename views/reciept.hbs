@@ -6,29 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 align="center">Invoice</h1>
     <div id="main_div">
-        <div id="heading"></div>
+        <div id="heading"><h1>INVOICE</h1></div>
         <br> <br>
         <div>
-            <table align="center" id="pnr_table">
-                <tr>
-                    <td>
-                        <h2>Confirmation Number: {{payment_id}}</h2>
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?data={{payment_id}}&amp;size=100x100">
-                    </td>
-                    <td>
-                        <h2>Booking Date: {{date}}</h2>
-                    </td>
-                    <td>
-                        Status: Confirmed
-                    </td>
-                </tr>
+            <table align="center" id="pnr_table" border="0">
+                <thead>
+                    <tr>
+                        <td>
+                        <h3 id="payment_id"> Confirmation Number: {{payment_id}} </h3> 
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data={{payment_id}}&amp;size=50x50">
+                        </td>
+                        <td>
+                            <h3>Booking Date: {{date}}</h3>
+                        </td>
+                        <td>
+                            <h3>Status: Confirmed</h3>  
+                        </td>
+                    </tr>
+                </thead>
             </table>
         </div>
         <br> <br>
         <div>
-            <table id="travel_info" alig="center">
+            <table id="travel_info" align="center">
                 <thead>
                     <tr>
                         <td colspan="7">Travel Information</td>
@@ -58,10 +59,67 @@
         </div>
         <br> <br>
         <div>
-            <table id="pass_info">
-
+            <table id="pass_info" align="center">
+                <thead>
+                    <tr>
+                        <td colspan="3">PASSENGER INFORMATION</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ticket ID</td>
+                        <td>PASSENGER NAME</td>
+                        <td>SEAT NUMBER</td>
+                    </tr>
+                    {{#each result as |item|}}
+                        <tr class = "book">
+                            <td>{{item.T_id}}</td>
+                            <td>{{item.pass_name}}</td>
+                            <td>{{item.pass_seat_num}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
             </table>
         </div>
+        <br> <br>
+        <div>
+            <table id="payment_info" class="f_l" align="center">
+                <thead>
+                    <tr>
+                        <td colspan="2">PAYMENT INFORMATION</td>
+                        <td>PAYMENT ID: {{payment_id}}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> FARE + CUTE FEE: {{payment}} INR </td>
+                        <td colspan="2">TAX + GST: 18%</td>
+                    </tr>
+                    <tr>
+                        <td>PAYMENT TYPE - ONLINE</td>
+                        <td colspan="2">AMOUNT PAID: {{payment_gst}} INR</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br> <br>
+        <div>
+            <table align="center" class="f_l">
+                <tbody>
+                    <tr>
+                        <td colspan="2">IN CASE OF ANY DISCREPANCY, CONTACT: </td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL&#128231;: varshney.vaibhav18@gmail.com </td>
+                        <td>HELPLINE NUMBER☎️: 7042489996 </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br> 
+        <button style="background-color: red"> <a href="/user" id="btn">GO BACK</a> </button>
+        <br> <br> <br>
     </div>
+    <link rel="stylesheet" href="../css/reciept.css">
 </body>
 </html>

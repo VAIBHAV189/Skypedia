@@ -24,7 +24,6 @@ function createTable()
                 primary key(flightId , startTime)
             );`,
             function(err,result){
-                // console.log("Table1 Created")
                 if(err)
                     reject(err)
                 else
@@ -406,7 +405,8 @@ function confBookingUser(obj) {
                                                 ret_obj.startTime = obj.startTime
                                                 ret_obj.endDate = obj.endDate
                                                 ret_obj.endTime = obj.endTime
-                                                ret_obj.payment = payment
+                                                ret_obj.payment = payment*(100)/118
+                                                ret_obj.payment_gst = payment
                                                 ret_obj.flightId = flight_id
                                                 resolve(ret_obj)
                                             }

@@ -1,4 +1,87 @@
-/* For tables */
+
+/*---------------------------------------------------------Navbar Styling------------------------------------------------------*/
+
+.navbar {
+  background-color: rgba(8, 8, 8, 0.945);
+  font-family: Verdana;
+}
+.bar {
+  padding-right: 10px;
+  text-decoration: underline;
+}
+
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #aaa;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 10px;
+}
+.username{
+  padding-top:0.5em;
+  display: block;
+  text-decoration: none;
+  color: #aaa;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 10px;
+}
+nav ul li a:after,
+nav ul li a:before {
+  transition: all 0.5s;
+}
+
+.shift ul li a {
+  position:relative;
+  z-index: 1;
+}
+
+.shift ul li a:after 
+{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 1px;
+  content: '.';
+  color: transparent;
+  background: #dbb20f;
+  visibility: none;
+  opacity: 0;
+  z-index: -1;
+} 
+
+.shift ul li a:hover:after {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
+}
+
+/*--------------------------------------------------------------Admin Nav-------------------------------------------------------*/
+.adminNav{
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  border-width: 2px;
+}
+
+.space{
+  margin: 0.5em;
+}
+
+
+
+/*------------------------------------------------------------ For tables ----------------------------------------------------------------------*/
 /* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap");
 
@@ -7,36 +90,19 @@
 .customer-table {
 	font-family: "Noto Sans KR", sans-serif;
 	width: 100%;
-	max-width: 1024px;
-	margin: 100px auto;
+	margin: auto;
 	border-collapse: collapse;
-	text-align: center;
-	box-shadow: 0 2px 2px #e6e6e6;
+  text-align: center;
+  box-shadow: 3px 3px #cfcccc;
 }
 
 thead th {
-	background-color: #204051;
+	background-color: #67b4dd;
 }
 
-caption,thead th {
-	color: #fff;
-}
-
-th {
-	padding: 10px 5px;
-}
-
-tbody th,
-tbody td {
-	text-align: center;
-}
-
-tbody tr {
-	border-bottom: 2px solid transparent;
-}
-
-tbody tr:hover {
-	border-bottom: 2px solid #84a9ac;
+td {
+  font-size: 1em;
+  font-weight: bolder;
 }
 
 tbody tr:nth-of-type(even) {
@@ -60,16 +126,6 @@ tbody tr:nth-of-type(even) {
 	body {
 		font-size: 1.6em; /*16px*/
 	}
-
-	caption {
-		padding: 20px;
-	}
-}
-
-@media (min-width: 1024px) {
-	body {
-		font-size: 1.25em; /*20px*/
-	}
 }
 
 
@@ -77,52 +133,41 @@ tbody tr:nth-of-type(even) {
 
 
 
-
-
-/* for input boxes */
+/*------------------------------------------------------- for input boxes ---------------------------------------------------------------------*/
 iframe,form {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
-  font-size: 104%;
-  vertical-align: baseline;
 }
 
 th, td {
   padding: 1%;
   margin: 1%;
-  /* vertical-align: middle; */
 }
 
 /* Colors */
-/* ---------------------------------------- */
-
-form {
-  padding: 2em 1%;
-}
 
 .controls {
   text-align: left;
   position: relative;
 }
+
 .controls input[type="text"],
 .controls input[type="email"],
 .controls input[type="number"],
 .controls input[type="date"],
 .controls input[type="tel"],
-.controls textarea,
-.controls button,
 .controls select {
-  padding: 12px;
-  font-size: 14px;
+  padding: 1%;
+  font-size: 0.8em;
   border: 1px solid #c6c6c6;
   width: 100%;
   margin-bottom: 18px;
-  color: #888;
+  color: rgb(153, 36, 36);
   font-family: 'Lato', 'sans-serif';
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 1em;
+  font-weight: bolder;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -131,27 +176,22 @@ form {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
+
 .controls input[type="text"]:focus, .controls input[type="text"]:hover,
 .controls input[type="number"]:focus,
 .controls input[type="number"]:hover,
 .controls input[type="date"]:hover,
-.controls button:focus,
-.controls button:hover,
 .controls select:focus,
 .controls select:hover {
   outline: none;
   border-color: #9FB1C1;
 }
+
 .controls input[type="text"]:focus + label, .controls input[type="text"]:hover + label,
 .controls input[type="number"]:focus + label,
 .controls input[type="number"]:hover + label,
 .controls input[type="date"]:focus + label,
 .controls input[type="date"]:hover + label,
-.controls textarea:focus + label,
-.controls textarea:hover + label,
-.controls button:focus + label,
-.controls button:hover + label,
-.controls select:focus + label,
 .controls select:hover + label {
   color: rgb(50, 50, 226);
   cursor: text;
@@ -165,14 +205,12 @@ form {
 
 .controls label {
   position: absolute;
-  left: 8px;
-  top: 12px;
-  width: 60%;
+  left: 1%;
+  top: 6%;
   color: rgb(46, 48, 197);
-  font-size: 16px;
+  font-size: 0.8em;
   display: inline-block;
-  padding: 4px 10px;
-  font-weight: 400;
+  font-weight: bolder;
   background-color: rgba(160, 96, 96, 0);
   -moz-transition: color 0.3s, top 0.3s, background-color 0.8s;
   -o-transition: color 0.3s, top 0.3s, background-color 0.8s;
@@ -182,7 +220,7 @@ form {
 }
 .controls label.active {
   top: -11px;
-  color: rgb(228, 67, 67);
+  color: rgb(46, 48, 197);
   background-color: white;
   width: auto;
 }
@@ -234,8 +272,9 @@ form {
 .col-1-8 {
   width: 12.5%;
 }
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
 
-input[type=submit]{
+input[type=submit] {
     background-color: #fc1a1a;
     border: none;
     color: white;
@@ -243,9 +282,15 @@ input[type=submit]{
     margin: 3px 3px;
     cursor: pointer;
     border-radius: 0.5em;
+    box-shadow: rgb(36, 35, 35) 1.8px 1.8px;
 }
 #f_description{
     padding-left: 3.7%;
+    font-size: 0.8em;
+    margin-bottom: 2%;
+    background-image: linear-gradient(to left,rgb(247, 144, 144), rgb(248, 248, 152));
+    margin-top: 1%;
+    border-radius: 2em;
 }
 
 #col1 {
@@ -274,21 +319,16 @@ input[type=submit]{
 #hidef_desc {
   padding: 1%;
 }
-nav {
-  margin-left: 3%;
-  margin-right: 3%;
-  font-size: 1em;
-}
-/* span {
-  font-size: 2em;
-} */
+
 .info_label {
-  color: blue;
-  font-size: 1.5em;
+  color: rgb(6, 6, 247);
+  font-weight: bolder;
 }
+
 .info {
-  color: rgb(236, 142, 142);
+  color: rgb(226, 33, 33);
 }
+
 #bg_image {
   background: url('../images/bookingbg.jpg');
   background-size: 100% 100%;
@@ -299,4 +339,26 @@ nav {
   bottom: 0;
   right: 0;
   z-index: -1;   
+}
+
+#heading {
+  color: rgb(243, 18, 18);
+  font-weight: bolder;
+  font-size: 3em;
+  text-shadow: rgb(55, 26, 219) 1px 1px;
+  font-family: 'Noto Sans KR';
+}
+
+.bookFlight, #Booking_redirect {
+  background-color: red;
+  font-weight: bolder;
+  color: white;
+  border: 0px white;
+  border-radius: 1em;
+}
+
+img {
+  margin-top: 2%;
+  margin-right: 1%;
+  border-radius: 2em;
 }
