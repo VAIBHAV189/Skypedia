@@ -20,6 +20,9 @@ loginCheck().then((obj)=>{
 })
 
 $(()=>{
+    setTimeout(()=>{
+        $(".wrapper").hide()
+    },2000) 
     //----------------------------------------------------------------FOR FLOATING LABELS--------------------------------------------------------// 
     function floatLabel(inputType) 
     {

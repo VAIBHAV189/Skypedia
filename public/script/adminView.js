@@ -97,6 +97,9 @@ function schbtn()
 
 //-----------------------------------------------------------Document Ready-----------------------------------------------//
 $(()=>{
+    setTimeout(()=>{
+        $(".wrapper").hide()
+    },2000) 
     $('#flightDetails').hide()
     $('#insertDetails').hide()
     $('#searchDetails').hide()
