@@ -6,7 +6,7 @@
     
     background: black url(../images/Preloader.gif) center  ;
     background-size: cover;
-    z-index: inherit;   
+    z-index: 999999;   
 
 }
 .wrapper{

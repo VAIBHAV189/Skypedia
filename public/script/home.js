@@ -10,11 +10,11 @@ function loginCheck()
 }
 
 $(()=>{
-   
+    
     setTimeout(()=>{
         $(".wrapper").hide()
-    },5500)   
-
+    },5500)  
+    
     loginCheck().then((obj)=>{
         $('#logout').hide() 
         // $('#user').hide()   
