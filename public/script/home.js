@@ -1,3 +1,4 @@
+
 function loginCheck()
 {
     return new Promise((resolve,reject)=>{
@@ -7,19 +8,29 @@ function loginCheck()
         })   
     })
 }
-loginCheck().then((obj)=>{
-    $('#logout').hide() 
-    // $('#user').hide()
-    // console.log("Object Received : " + obj.login);
-    if(obj.login==="true")
-    {
-        console.log("Here");
-        $('#login').hide()
-        $('#signup').hide()
-        $('#user').html("Welcome " + obj.username)
-        $('#logout').show();
-    }
+
+$(()=>{
+    
+    setTimeout(()=>{
+        $(".wrapper").hide()
+    },5500)  
+    
+    loginCheck().then((obj)=>{
+        $('#logout').hide() 
+        // $('#user').hide()   
+        // console.log("Object Received : " + obj.login);
+        if(obj.login==="true")
+        {
+            console.log("Here");
+            $('#login').hide()
+            $('#signup').hide()
+            $('#user').html("Welcome " + obj.username)
+            // $('#user').show()
+            $('#logout').show();
+        }
+    })
 })
+
 
 
 

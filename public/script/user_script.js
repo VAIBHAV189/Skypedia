@@ -1,26 +1,28 @@
-$(()=>{
-  
 //-----------------------------------------------------------------------Login checker------------------------------------------------------------//
-    function loginCheck()
-    {
-        return new Promise((resolve,reject)=>{
-            $.get('/root/username',(details)=>{
-                resolve(details);
-            })   
-        })
-    }
-    loginCheck().then((obj)=>{
-        $('#logout').hide() 
-        $("#topRow").hide()
-        if(obj.login==="true")
-        {
-            $('#login').hide()
-            $('#signup').hide()
-            $('#user').html("Welcome " + obj.username)
-            $('#logout').show();
-        }
+function loginCheck()
+{
+    return new Promise((resolve,reject)=>{
+        $.get('/root/username',(details)=>{
+            resolve(details);
+        })   
     })
+}
+loginCheck().then((obj)=>{
+    $('#logout').hide() 
+    $("#topRow").hide()
+    if(obj.login==="true")
+    {
+        $('#login').hide()
+        $('#signup').hide()
+        $('#user').html("Welcome " + obj.username)
+        $('#logout').show();
+    }
+})
 
+$(()=>{
+    setTimeout(()=>{
+        $(".wrapper").hide()
+    },2000) 
     //----------------------------------------------------------------FOR FLOATING LABELS--------------------------------------------------------// 
     function floatLabel(inputType) 
     {
@@ -61,7 +63,7 @@ $('#hide').hide()
 
        $('#f_description').html
        (
-           `<img src="../images/smallimage.PNG" align="right" height="140">
+           `<img src="../images/smallimage.PNG" align="right" height="140" id="Img">
            <span class="info_label">You have chosen Flight: <span class="info">`+f_name +`</span> <br> 
            This flight will take off from <span class="info"> `+ source+` on `+ startDate+`, ` +startTime+` IST </span> <br> 
            and will Land on <span class="info">`+destination +` at `+ endDate+`, `+ endTime+` IST </span> 

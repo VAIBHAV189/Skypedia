@@ -16,6 +16,9 @@
 
 </head>
 <body>
+	<div class="wrapper">
+    <div class="loader"></div>
+    </div>
 	{{!-- -----------------------------------------------------NAVBAR-----------------------------------------------------------------}}
 	<nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand text-light" href="/">AIRLINE MANAGER</a>
@@ -78,27 +81,27 @@
 	{{!-- -------------------------------------------------------------Schedule Insertion---------------------------------------------------------}}
 	<div id="scheduleFlight">
 		<form method="POST" action="/admin/schedule">
-			<h5><mark>Schedule Flight</mark></h5>
+			<h5><mark>Schedule Flight</mark></h5> <br>
 			<div class="row">
-				<input type="text" id="flightId" name="flightId" class="col-lg-2 form-control" placeholder="Flight ID">
+				<input type="text" id="flightId" name="flightId" class="col-lg-2 form-control" placeholder="Flight ID"> &nbsp; &nbsp; &nbsp;
 				<input type="text" id="flightName" name="flightName" class="col-lg-2 form-control" placeholder="Flight Name">
-			</div>
+			</div> 
 			<div class="row">
-				<input type="text" id="source" name="source" class="col-lg-2 form-control" placeholder="Source">
+				<input type="text" id="source" name="source" class="col-lg-2 form-control" placeholder="Source"> &nbsp; &nbsp; &nbsp;
 				<input type="text" id="destination" name="destination" class="col-lg-2 form-control" placeholder="Destination">
-			</div>
+			</div>  
 			<div class="row">
 				<input type="text" id="price" name="price" class="col-lg-2 form-control" placeholder="Price">
 			</div>
 			<div class="row">
 				<label for="startDate" class="input-group-text">Start Date:</label>
-				<input type="date" id="startDate" name="startDate" class="col-lg-2 form-control" placeholder="Start Date">
+				<input type="date" id="startDate" name="startDate" class="col-lg-2 form-control" placeholder="Start Date"> &nbsp; &nbsp; &nbsp;
 				<label for="startTime" class="input-group-text">Start Time:</label>
 				<input type="time" id="startTime" name="startTime" class="col-lg-2 form-control" placeholder="Start Time">
 			</div>
 			<div class="row">
 				<label for="endDate" class="input-group-text">End Date:</label>
-				<input type="date" id="endDate" name="endDate" class="col-lg-2 form-control" placeholder="End Date">
+				<input type="date" id="endDate" name="endDate" class="col-lg-2 form-control" placeholder="End Date"> &nbsp; &nbsp; &nbsp; &nbsp;
 				<label for="endTime" class="input-group-text">End Time:</label>
 				<input type="time" id="endTime" name="endTime" class="col-lg-2 form-control" placeholder="Ending Time">
 			</div>

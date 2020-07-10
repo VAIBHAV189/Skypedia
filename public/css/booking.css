@@ -6,7 +6,6 @@
 }
 .bar{
   padding-right: 10px;
-  text-decoration: underline;
 }
 
 
@@ -76,7 +75,9 @@ nav ul li a:before {
 .space{
   margin: 0.5em;
 }
-
+a {
+  text-decoration: none;
+}
 
 
 
