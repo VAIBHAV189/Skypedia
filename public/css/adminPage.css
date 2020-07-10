@@ -18,6 +18,12 @@
 
 /*---------------------------------------------------------Navbar Styling------------------------------------------------------*/
 
+.navbar-brand{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:2em;
+    color:whitesmoke;
+}
+
 .navbar{
     background-color: rgba(8, 8, 8, 0.945);
     font-family: Verdana;

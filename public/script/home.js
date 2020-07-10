@@ -8,12 +8,16 @@ function loginCheck()
         })   
     })
 }
-
+let flag="false"
 $(()=>{
-    
-    setTimeout(()=>{
-        $(".wrapper").hide()
-    },5500)  
+
+    if(flag=="false")
+    {
+        setTimeout(()=>{
+            $(".wrapper").hide()
+        },3000) 
+        flag="true";
+    } 
     
     loginCheck().then((obj)=>{
         $('#logout').hide() 

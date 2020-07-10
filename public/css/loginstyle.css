@@ -6,8 +6,8 @@ html,body{
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 100%;
-    font-family: 'Dancing Script', cursive;
-    font-weight: 600;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 500;
 }
 
 .container{
@@ -17,18 +17,20 @@ html,body{
 }
 
 .card{
-height: 400px;
+height: 350px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-image: linear-gradient(to bottom right, rgb(255, 5, 5) , rgb(243, 10, 10)) !important;
+background-color: rgb(51, 113, 138) !important;
+border-radius: 1em;
 }
 .card1{
-height: 450px;
+height: 380px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+background-color:  rgb(51, 113, 138) !important;
+border-radius: 1em;
 }
 
 .social_icon span{
@@ -44,11 +46,15 @@ cursor: pointer;
 
 .card-header h3{
 color: rgb(250, 248, 248);
-font-weight: bolder;
+font-weight: bold;
 text-shadow: black 2px 2px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 .card-body {
-background-image: linear-gradient(to right, rgb(201, 191, 248) , rgb(245, 239, 238)) !important;
+height: 80%;
+background-image: linear-gradient(to right, rgb(4, 164, 175) , rgb(245, 239, 238)) !important;
+border-radius: 1em;
 }
 .social_icon{
 position: absolute;
@@ -57,10 +63,13 @@ top: -45px;
 }
 
 .input-group-prepend span{
+
 width: 50px;
-background-color: #FFC312;
+background-color: #9bee93;
 color: black;
 border:0 !important;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 input:focus{
@@ -78,22 +87,43 @@ color: white;
 width: 20px;
 height: 20px;
 margin-left: 15px;
-margin-right: 5px;
+margin-right: 5px;;
+
 }
 
 .login_btn{
+position: absolute;
+top:80%;
+left:70%;
 color: rgb(246, 247, 241);
-background-color: #f30909;
-font-weight: bolder;
+background-color: #024397;
+font-weight: 300;
 border-radius: 2em;
-font-size: 1.2em;
+font-size: 1.1em;
 text-shadow: black 2px 2px;
 width: 100px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
-.login_btn:hover{
+.login_btn :hover{
 color: rgb(240, 232, 232);
-background-color: rgb(245, 13, 13);
+background-color: rgb(12, 15, 177);
+}
+
+.signUp{
+    color: rgb(246, 247, 241);
+    background-color: #024397;
+    font-weight: 300;
+    border-radius: 2em;
+    font-size: 1.1em;
+    text-shadow: black 2px 2px;
+    width: 100px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.signUp:hover{
+    background-color: rgb(12, 15, 177);
 }
 
 .links{
