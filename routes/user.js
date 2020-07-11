@@ -103,7 +103,10 @@ route.post('/history',(req,res)=>{
                     let history = {}
                     if(Object.keys(past).length === 0) history['future'] = future
                     else if(Object.keys(future).length === 0) history['past'] = past
-                    console.log(history.past)
+                    else {
+                        history['future'] = future
+                        history['past'] = past
+                    }
                     return res.render('userhistory',{obj,history})
                 }
             })

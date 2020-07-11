@@ -8,6 +8,7 @@ function loginCheck()
         })   
     })
 }
+
 loginCheck().then((obj)=>{
     $('#logout').hide() 
     $("#topRow").hide()
@@ -24,10 +25,11 @@ loginCheck().then((obj)=>{
 function search(src,des,sd)
 {
     let flag=0
-    $("#details tr").each(function(){
+    $("#details tr").each(function()
+    {
         let currentRow=$(this)
 
-        let flight={
+        let flight = {
             flightId:currentRow.find('td:eq(0)').text(),
             flightName:currentRow.find('td:eq(1)').text(),
             source:currentRow.find('td:eq(2)').text(),
@@ -40,14 +42,14 @@ function search(src,des,sd)
             seatsLeft:currentRow.find('td:eq(9)').text()
         }
 
-        if(flight.source===src&&flight.destination===des&&flight.startDate===sd)
+        if(flight.source === src && flight.destination === des && flight.startDate === sd)
         {
             flag=1
             let tr=document.createElement('tr')
             for(item in flight)
             {
-                let td=document.createElement('td')
-                td.innerHTML=flight[item]
+                let td = document.createElement('td')
+                td.innerHTML = flight[item]
                 tr.append(td)
             }    
             $('#searchTable tbody').append(tr)

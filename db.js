@@ -191,7 +191,6 @@ function searchDetails(obj)
             [obj.source,obj.destination,obj.startDate],
             function(err,result)
             {
-                // console.log(result)
                 if(err)
                     reject(err)
                 else
