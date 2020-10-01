@@ -35,38 +35,21 @@ passport.deserializeUser(
     }
 )
 
-// passport.use(new localStrategy(function(username,password,done){
-//     Users.findOne({
-//         where:{
-//             username:username
-//         }
-//     }).then((user)=>{
-//         if(!user)
-//         {
-//             return done(null,false,{message:"No such user "})
-//         }
-//         if(user.password!=password)
-//         {
-//             return done(null,false,{message:"Wrong Password"})
-//         }
-        
-//         return  done(null,user)
-        
-//     }).catch((err)=>{
-//         return done(err)
-//     })
-// }))
-
 passport.use(new localStrategy(
     function(username,password,done){
         Users.findOne({
-            where:{username:username} 
+            where:{
+                username:username
+            } 
         })
         .then((user)=>{
+            let pass = user.password;
+            //No such user exists
             if(!user){
                 return done(null,false) 
             }
-            if(user.password != password){
+            //Password doesn't match
+            else if(pass != password){
                 return done(null,false) 
             }
             done(null,user) 
