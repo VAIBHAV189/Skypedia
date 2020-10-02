@@ -30,5 +30,5 @@ server.get("/*",(req,res)=>{
     res.render('errorPage')
 })
 server.listen(6979,()=>{
-    console.log("Server started successfully at localhost:6979")
+    console.log("Server started ! localhost:6979")
 })
